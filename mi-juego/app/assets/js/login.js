@@ -19,7 +19,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             localStorage.setItem("token", data.token);
 
             // Redirigir a la selección de jugadores
-            window.location.href = "seleccion-jugadores.html";
+            window.location.href = "partidas.html";
         } else {
             // Mostrar mensaje de error
             errorMsg.textContent = data.error || "Credenciales incorrectas";

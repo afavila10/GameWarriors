@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partidas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="../assets/css/style.css">-->
+    <link rel="stylesheet" href="../assets/css/modal.css">
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4 shadow-lg" style="width: 22rem;">
+            <h3 class="text-center mb-3 text-black"> Elije o Crea una partida</h3>
+            <button class="myBtn" onclick="window.location.href='./seleccion-jugadores.html'">Jugar en este
+                dispositivo</button>
+            <!-- Trigger/Open The Modal 
+            <button id="myBtn">Crear partida</button> -->
+            <button class="myBtn" data-modal-target="modalCrear">Crear partida</button>
+            <!-- The Modal -->
+            <div id="modalCrear" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <!--<p>Some text in the Modal..</p>-->
+                    <form id="formCrearPartida">
+                        <label for="Pname">Nombre de la partida:</label><br>
+                        <input type="text" id="Pname" name="Pname"><br><br>
+                        <input class="input" type="submit" value="Create">
+                        <input class="input" type="reset" value="Delete">
+                    </form>
+                </div>
+            </div>
+            <button class="myBtn" data-modal-target="modalUnirse">Partidas disponibles</button>
+            <!--<button id="myBtn">Unirme a una partida</button>-->
+            <!-- Modal Unirse a Partida -->
+            <div id="modalUnirse" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="closeUnirse">&times;</span>
+                    <form>
+                        <label for="Pgame">Partidas disponibles:</label><br>
+                        <div id="listaPartidas">
+                            <!-- Aquí se agregarán las partidas dinámicamente -->
+                        </div>
+                        <input class="input" type="submit" value="Unirse">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>-->
+    <script src="../assets/js/modal.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io(); // Conexión al mismo host y puerto
+    </script>
+
+
+</body>
+
+</html>
