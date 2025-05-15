@@ -62,16 +62,6 @@ db.serialize(() => {
         FOREIGN KEY (winner_id) REFERENCES WARRIORS(warrior_id)
     )`);
 
-    // db.run(`CREATE TABLE IF NOT EXISTS Battle_Results (
-    //     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    //     battle_id INTEGER NOT NULL,
-    //     warrior_id INTEGER NOT NULL,
-    //     result TEXT NOT NULL, -- 'win' o 'lose'
-    //     damage_dealt INTEGER NOT NULL,
-    //     FOREIGN KEY (battle_id) REFERENCES Battles(id),
-    //     FOREIGN KEY (warrior_id) REFERENCES Warriors(id)
-    // )`);
-    
     db.run(`CREATE TABLE IF NOT EXISTS WARRIOR_POWERS (
         warrior_id INTEGER,
         power_id INTEGER,
@@ -88,10 +78,13 @@ db.serialize(() => {
         FOREIGN KEY (spell_id) REFERENCES SPELLS(spell_id)
     )`);
 
-    
-
-
-
+    db.run(`CREATE TABLE IF NOT EXISTS partidas (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT NOT NULL,
+        conectados INTEGER DEFAULT 1,
+        estado TEXT DEFAULT 'esperando',
+        creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )`);
 });
 
 module.exports = db;

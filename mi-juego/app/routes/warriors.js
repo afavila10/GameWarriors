@@ -11,6 +11,13 @@ router.post("/", warriorController.createWarrior);
 router.put("/:id", warriorController.updateWarrior);
 router.delete("/:id", warriorController.deleteWarrior);
 
+router.get("/listar", (req, res) => {
+  const sql = "SELECT id, name FROM warriors";
+  db.all(sql, [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
 
 
 module.exports = router;

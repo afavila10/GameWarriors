@@ -8,9 +8,9 @@ exports.getPartidasById = (id, callback) => {
     db.get("SELECT * FROM partidas WHERE id = ?", [id], callback);
 };
 
-exports.createPartida = (nombre, conectados, estado, creado_en, callback) => {
-    const query = "INSERT INTO partidas (nombre, conectados, estado, creado_en) VALUES (?, ?, ?, ?)";
-    db.run(query, [nombre, conectados, estado, creado_en], callback);
+exports.createPartida = (nombre,callback) => {
+    const query = "INSERT INTO partidas (nombre) VALUES (?)";
+    db.run(query, [nombre], callback);
 };
 
 exports.updatePartida = (id,nombre, conectados, estado, creado_en, callback) => {
