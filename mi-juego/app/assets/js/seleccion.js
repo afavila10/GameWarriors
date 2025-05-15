@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "warrior-item");
 
         const img = document.createElement("img");
-        img.src = `/app/assets/Img/warriors/${warrior.warrior_id}.jpg`;  // Imagen basada en warrior_id
-        img.onerror = () => img.src = "../assets/css/Img/default.jpg"; // Imagen por defecto si no existe
+        img.src = `../assets/Img/warriors/${warrior.warrior_id}.jpg`;  // Imagen basada en warrior_id
+        //img.onerror = () => img.src = "../assets/css/Img/default.jpg"; // Imagen por defecto si no existe
         img.classList.add("warrior-img");
 
         const nameSpan = document.createElement("span");

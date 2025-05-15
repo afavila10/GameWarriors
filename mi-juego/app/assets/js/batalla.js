@@ -99,8 +99,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         cardBack.classList.add("card-back");
 
         const img = document.createElement("img");
-        img.src = `/app/assets/Img/warriors/${warrior.warrior_id}.jpg`;
-        img.onerror = () => img.src = "../assets/css/Img/default.jpg";
+        img.src = `../assets/Img/warriors/${warrior.warrior_id}.jpg`;
+        //img.onerror = () => img.src = "../assets/css/Img/default.jpg";
         img.classList.add("card-img-top");
 
         // Obtener poderes y hechizos desde la API
@@ -236,6 +236,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (selectedPlayer2) selectedPlayer2.card.classList.remove("selected");
     
                 combatButton.disabled = true;
+
+                if (player1Selection.length === 0 || player2Selection.length === 0) {
+                    alert("🎉 ¡Fin del juego! El ganador es el Jugador " + (player1Selection.length === 0 ? 2 : 1));
+                    // Aquí podrías redirigir, guardar resultados, etc.
+                }
                  
                 // 📌 **REGISTRAR BATALLA EN LA BASE DE DATOS**
                 if (winner && loser) {

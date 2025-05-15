@@ -1,79 +1,5 @@
-
-/*document.addEventListener("DOMContentLoaded", function () {
-    // Buscar todos los botones que abren modales
-    const modalTriggers = document.querySelectorAll("[data-modal-target]");
-
-    // Agregar nueva partida al modal de "Partidas disponibles"
-    const formCrear = document.getElementById("formCrearPartida");
-    const listaPartidas = document.getElementById("listaPartidas");
-    const modalCrear = document.getElementById("modalCrear");
-
-    if (formCrear) {
-        formCrear.addEventListener("submit", function (e) {
-            e.preventDefault();
-            
-            const nombre = document.getElementById("Pname").value.trim();
-            if (nombre === "") {
-                alert("Por favor completa todos los campos");
-                return;
-            }
-
-            // Crear los elementos del radio button y label
-            const radio = document.createElement("input");
-            radio.type = "radio";
-            radio.name = "partida";
-            radio.value = nombre;
-            radio.id = nombre;
-
-            const label = document.createElement("label");
-            label.htmlFor = nombre;
-            label.textContent = `${nombre}`;
-
-            // Insertarlos en el contenedor
-            listaPartidas.appendChild(radio);
-            listaPartidas.appendChild(label);
-            listaPartidas.appendChild(document.createElement("br"));
-
-            // Ocultar el modal
-            modalCrear.style.display = "none";
-
-            // Limpiar el formulario
-            formCrear.reset();
-        });
-    }
-
-
-    // Abrir el modal correspondiente
-    modalTriggers.forEach(button => {
-        button.addEventListener("click", () => {
-            const modalId = button.getAttribute("data-modal-target");
-            const modal = document.getElementById(modalId);
-            if (modal) modal.style.display = "block";
-        });
-    });
-
-    // Cerrar modales al hacer clic en la 'X'
-    const closeButtons = document.querySelectorAll(".modal .close");
-    closeButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            const modal = button.closest(".modal");
-            if (modal) modal.style.display = "none";
-        });
-    });
-
-    // Cerrar si se hace clic fuera del modal
-    window.addEventListener("click", function (event) {
-        const modals = document.querySelectorAll(".modal");
-        modals.forEach(modal => {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        });
-    });
-}); */
-
 document.addEventListener("DOMContentLoaded", function () {
-    const socket = io(); // conexión con el servidor
+    //const socket = io(); // conexión con el servidor
 
     const modalTriggers = document.querySelectorAll("[data-modal-target]");
     const formCrear = document.getElementById("formCrearPartida");
@@ -133,9 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
         agregarPartidaAlDOM(partida.nombre);
     });
 
-    socket.on("listar_partidas", (partidas) => {
+    socket.on("listar_partidas", (partida) => {
         listaPartidas.innerHTML = ""; // Limpiar lista anterior
-        partidas.forEach(p => agregarPartidaAlDOM(p.nombre));
+        partida.forEach(p => agregarPartidaAlDOM(p.nombre));
     });
 
     function agregarPartidaAlDOM(nombre) {
@@ -143,14 +69,42 @@ document.addEventListener("DOMContentLoaded", function () {
         radio.type = "radio";
         radio.name = "partida";
         radio.value = nombre;
-        radio.id = nombre;
+        radio.id = nombre
 
         const label = document.createElement("label");
         label.htmlFor = nombre;
-        label.textContent = nombre;
+        label.textContent = `${nombre}`;
 
+        // Insertarlos en el contenedor
         listaPartidas.appendChild(radio);
         listaPartidas.appendChild(label);
         listaPartidas.appendChild(document.createElement("br"));
+    }
+    
+    const btnUnirse = document.getElementById("btnUnirse");
+
+    if (btnUnirse) {
+        btnUnirse.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const partidaSeleccionada = document.querySelector('input[name="partida"]:checked');
+
+            if (!partidaSeleccionada) {
+                alert("Selecciona una partida para unirte.");
+                return;
+            }
+
+            const nombrePartida = partidaSeleccionada.value;
+
+            // Guardar el nombre de la partida en localStorage
+            localStorage.setItem("partida", nombrePartida);
+
+            // Envía también el nombre del jugador (puedes personalizarlo si quieres)
+            const nombreJugador = "Jugador" + Math.floor(Math.random() * 1000); // o un input si tienes
+
+            // Redirigir al juego
+            socket.disconnect();
+            window.location.href = `game.html?partidaId=${encodeURIComponent(nombrePartida)}&jugador=${encodeURIComponent(nombreJugador)}`;
+        });
     }
 });

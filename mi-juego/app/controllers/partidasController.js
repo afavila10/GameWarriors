@@ -8,7 +8,7 @@ exports.getAllPartidas = (req, res) => {
     });
 };
 
-// Obtener poder por ID
+// Obtener partidas por ID
 exports.getPartidasById = (req, res) => {
     const { id } = req.params;
     PartidaModel.getPartidasById(id, (err, row) => {
@@ -17,16 +17,16 @@ exports.getPartidasById = (req, res) => {
     });
 };
 
-// Crear un nuevo poder
+// Crear un nuevo partidas
 exports.createPartida = (req, res) => {
-    const { nombre, conectados, estado, creado_en} = req.body;
-    PartidaModel.createPartida(nombre, conectados, estado, creado_en, function (err) {
+    const { nombre } = req.body;
+    PartidaModel.createPartida(nombre, function (err) {
         if (err) return res.status(500).json({ error: err.message });
         res.json({ id: this.lastID });
     });
 };
 
-// Actualizar un poder
+// Actualizar un partida
 exports.updatePartida = (req, res) => {
     const { id } = req.params;
     const { nombre, conectados, estado, creado_en} = req.body;
@@ -36,7 +36,7 @@ exports.updatePartida = (req, res) => {
     });
 };
 
-// Eliminar un poder
+// Eliminar un partida
 exports.deletePartida = (req, res) => {
     const { id } = req.params;
     PartidaModel.deletePartida(id, function (err) {
