@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List of spells</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="/mi-juego/app/assets/css/style.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+     <!-- Incluir sidebar -->
+    <div id="sidebar"></div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <div class="dropdown" style="position: absolute; top: 10px; right: 20px;">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="profileMenu" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fas fa-user me-2"></i> Perfil
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="userMenu">
+                <li><span class="dropdown-item-text" id="loggedInUser">@usuario</span></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar sesión</a></li>
+            </ul>
+        </div>
+
+        <h1 class="title">Home</h1>
+        <div class="container mt-5">
+            <h2 class="mb-4">List of spells</h2>
+            <!-- Botón Crear warrior -->
+            <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#createSpellsModal">
+                <i class="fas fa-user-plus"></i> Add spells
+            </button>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover align-middle text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Percentage</th>
+                            <th>Acciones </th>
+                        </tr>
+                    </thead>
+                    <tbody id="spellsTableBody">
+                        <!-- Contenido generado dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar el usuario-->
+    <div class="modal fade" id="editSpellsModal" tabindex="-1" aria-labelledby="editSpellsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content align-items">
+                <form id="editSpellsForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editSpellsModalLabel">Edit spells</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body row-3">
+                        <input type="hidden" id="editSpellsId">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" id="editSpellsName" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Description</label>
+                            <input type="text" class="form-control" id="editSpellsDescription" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Percentage</label>
+                            <input type="number" class="form-control" id="editSpellsPercentage" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal para crear el warrior-->
+    <div class="modal fade" id="createSpellsModal" tabindex="-1" aria-labelledby="createSpellsModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="createSpellsForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createSpellsModalLabel">Create Spells</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="createName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="createName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="createDescription" class="form-label">Description</label>
+                            <input type="text" class="form-control" id="createDescription" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="createPercentage" class="form-label">Percentage</label>
+                            <input type="number" class="form-control" id="createPercentage" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Create spells</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+     <script src="/mi-juego/app/assets/js/loadSidebar.js"></script>
+    <script src="/mi-juego/app/assets/js/spellsTable.js"></script>
+    <script src="/mi-juego/app/assets/js/CerrarSesion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

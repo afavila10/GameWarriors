@@ -6,7 +6,7 @@ const db = require('../database/database.js'); // Ajusta la ruta si es necesario
 
 // Obtener todos los usuarios
 exports.getAllUsers = (req, res) => {
-    db.all("SELECT user_id, username, email FROM USERS", [], (err, rows) => {
+    db.all("SELECT user_id, username, email, password FROM USERS", [], (err, rows) => {
         if (err) return res.status(500).json({ error: "Error al obtener usuarios" });
         res.json(rows);
     });

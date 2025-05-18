@@ -25,7 +25,7 @@ exports.create = (username, email, hashedPassword, callback) => {
 
 // Obtener todos los usuarios
 exports.getAll = (callback) => {
-    const query = "SELECT user_id, username, email FROM USERS";
+    const query = "SELECT user_id, username, email, password FROM USERS";
     db.all(query, [], callback);
 };
 
