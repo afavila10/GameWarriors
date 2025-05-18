@@ -7,5 +7,7 @@ router.get('/', warriorSpellsController.getAllWarriorSpells);
 router.get('/:warrior_id', warriorSpellsController.getSpellsByWarriorId);
 router.post('/', warriorSpellsController.assignSpellToWarrior);
 router.delete('/:warrior_id/:spell_id', warriorSpellsController.removeWarriorSpell);
+router.put('/update-spell/:warriorSpellsId', warriorSpellsController.updateSpellsWarrior);
+
 
 module.exports = router;

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List of warrior Powers</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="/app/assets/css/style.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <!-- Incluir sidebar -->
+    <div id="sidebar"></div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <div class="dropdown" style="position: absolute; top: 10px; right: 20px;">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="profileMenu" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fas fa-user me-2"></i> Perfil
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="userMenu">
+                <li><span class="dropdown-item-text" id="loggedInUser">@usuario</span></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar sesión</a></li>
+            </ul>
+        </div>
+
+        <h1 class="title">Home</h1>
+        <div class="container mt-5">
+            <h2 class="mb-4">List of Warrior Powers</h2>
+            <!-- Botón add warrior Type -->
+            <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#createWarriorPowersModal">
+                <i class="fas fa-user-plus"></i> Add warrior Powers
+            </button>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover align-middle text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>id</th>
+                            <th>warrior id</th>
+                            <th>Power id</th>
+                            <th>name</th>
+                            <th>percentage</th>
+                            <th>Acciones </th>
+                        </tr>
+                    </thead>
+                    <tbody id="WarriorPowersTableBody">
+                        <!-- Contenido generado dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar el usuario-->
+    <div class="modal fade" id="editWarriorPowersModal" tabindex="-1" aria-labelledby="editWarriorPowersModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content align-items">
+                <form id="editWarriorPowersForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editWarriorPowersModalLabel">Edit WarriorPowers</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body row-3">
+                        <input type="hidden" id="editWarriorPowerId">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Id del nuevo poder</label>
+                            <input type="number" class="form-control" id="editNewPowerId" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal para crear el warrior-->
+    <div class="modal fade" id="createWarriorPowersModal" tabindex="-1" aria-labelledby="createWarriorPowersModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="createWarriorPowersForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createWarriorPowersModalLabel">Create WarriorPowers</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="createWarriorId" class="form-label">warrior id</label>
+                            <input type="number" class="form-control" id="createWarriorId" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="createPowerId" class="form-label">Power id</label>
+                            <input type="number" class="form-control" id="createPowerId" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Create Warrior Powers</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="/app/assets/js/loadSidebar.js"></script>
+    <script src="/app/assets/js/WarriorPowersTable.js"></script>
+    <script src="/app/assets/js/CerrarSesion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

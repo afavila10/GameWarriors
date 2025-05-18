@@ -20,14 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
         WarriorSpells.forEach(WarriorSpell => {
             WarriorSpellsTableBody.innerHTML += `
           <tr>
-            <td>${WarriorSpell.type_id}</td>
+            <td>${WarriorSpell.id}</td>
             <td>${WarriorSpell.warrior_id}</td>
             <td>${WarriorSpell.spell_id}</td>
+            <td>${WarriorSpell.spell_name}</td>
+            <td>${WarriorSpell.percentage}</td>
             <td>
               <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(WarriorSpell)})'>
                 <i class="fas fa-edit"></i>
               </button>
-              <button class="btn btn-danger btn-sm" onclick="deleteWarriorSpells(${WarriorSpell.type_id})">
+              <button class="btn btn-danger btn-sm" onclick="deleteWarriorSpells(${WarriorSpell.warrior_id}, ${WarriorSpell.spell_id})">
                 <i class="fas fa-trash-alt"></i>
               </button>
             </td>
@@ -38,10 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Abrir modal y rellenar datos
     window.openEditModal = (WarriorSpells) => {
-        document.getElementById('editWarriorSpellsId').value = WarriorSpells.type_id;
-        document.getElementById('editWarriorWarriorId').value = WarriorSpells.spell_id;
-        document.getElementById('editWarriorSpellsTypeId').value = WarriorSpells.spell_id;
-        
+        document.getElementById('editWarriorSpellsId').value = WarriorSpells.id;
+        document.getElementById('editOldSpellId').value = WarriorSpells.old_spell_id;
+        document.getElementById('editNewSpellId').value = WarriorSpells.new_spell_id;
+        //document.getElementById('editSpellsName').value = WarriorSpells.name;
+        //document.getElementById('editSpellsPercentage').value = WarriorSpells.percentage;
+
         const modal = new bootstrap.Modal(document.getElementById('editWarriorSpellsModal'));
         modal.show();
     };
@@ -50,16 +54,18 @@ document.addEventListener('DOMContentLoaded', () => {
     editWarriorSpellsForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const id = document.getElementById('editWarriorSpellsId').value;
+        console.log('ID que se va a editar:', id);
 
         const updatedWarriorSpells = {
-            warrior_id: document.getElementById('editWarriorSpellsTypeId').value,
-            spell_id: document.getElementById('editWarriorSpellsName').value
-            
+            warrior_id: document.getElementById('editWarriorId').value,
+            old_spell_id: document.getElementById('editOldSpellId').value,
+            new_spell_id: document.getElementById('editNewSpellId').value,
         };
+        console.log('Datos enviados:', updatedWarriorSpells);
 
         try {
 
-            const res = await fetch(`http://localhost:3000/warrior_type/${id}`, {
+            const res = await fetch(`http://localhost:3000/warriorSpells/update-spell/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedWarriorSpells)
@@ -78,11 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Eliminar perfil
-    window.deleteWarriorSpells = async (id) => {
+    window.deleteWarriorSpells = async (warrior_id, spell_id) => {
         if (!confirm('¿Estás seguro de que deseas eliminar este WarriorSpells?')) return;
 
         try {
-            const res = await fetch(`http://localhost:3000/warriorSpells/${id}`, {
+            const res = await fetch(`http://localhost:3000/warriorSpells/${warrior_id}/${spell_id}`, {
                 method: 'DELETE'
             });
 
@@ -100,13 +106,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("createWarriorSpellsForm").addEventListener("submit", async function (e) {
         e.preventDefault();
 
+        const warrior_id = document.getElementById("createWarriorId").value.trim();
         const spell_id = document.getElementById("createSpellId").value.trim();
-        const name = document.getElementById("createName").value.trim();
-        
+
 
 
         // Validación básica
-        if (!name || !description ) {
+        if (!warrior_id || !spell_id) {
             alert("Por favor, completa todos los campos correctamente.");
             return;
         }
@@ -119,8 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify({
 
-                    name,
-                    description,
+                    warrior_id,
+                    spell_id
                 })
             });
 

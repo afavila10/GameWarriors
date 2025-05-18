@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (res.ok) {
-                fetchProfiles();
+                fetchWarriors();
             } else {
                 console.error('Error al eliminar warrior');
             }
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         // Validación básica
-        if (!name || !Total_Powers || !Total_Magic || !Health || !Speed || !Intenlligence || !Status || !type_id || !race_id  ) {
+        if (!name || !Total_Powers || !Total_Magic || !Health || !Speed || !Intenlligence || !Status || !type_id || !race_id) {
             alert("Por favor, completa todos los campos correctamente.");
             return;
         }

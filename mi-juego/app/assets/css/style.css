@@ -69,11 +69,11 @@ input {
     text-align: center;
 }
 
-.card:hover{
+.card:hover {
     transform: scale(0.9);
     opacity: 50;
     box-shadow: 0 15px 15px #e6e9e786;
-    
+
 }
 
 .card img {
@@ -109,16 +109,19 @@ input {
 
 
 
-#userName{
+#userName {
     color: aliceblue;
 }
-#emailName{
+
+#emailName {
     color: aliceblue;
 }
-#Password{
+
+#Password {
     color: aliceblue;
 }
-#Registro{
+
+#Registro {
     color: aliceblue;
 }
 
@@ -129,7 +132,8 @@ input {
     position: relative;
     width: 250px;
     height: 400px;
-    perspective: 200px; /* Profundidad para efecto 3D */
+    perspective: 200px;
+    /* Profundidad para efecto 3D */
 }
 
 .card-inner {
@@ -144,7 +148,8 @@ input {
     transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -180,8 +185,10 @@ input {
 
 .health-bar {
     height: 20px;
-    background-color: #0baa10; /* Color verde */
-    width: 100%; /* Vida completa */
+    background-color: #0baa10;
+    /* Color verde */
+    width: 100%;
+    /* Vida completa */
     transition: width 0.3s ease-in-out;
 }
 
@@ -232,11 +239,11 @@ input {
     color: white;
 }
 
-.btn-close{
+.btn-close {
     background-color: #0baa10;
-    color:#1a1919;
-}
-.btn-close:hover{
-    background-color: #fffefe;
+    color: #1a1919;
 }
 
+.btn-close:hover {
+    background-color: #fffefe;
+}

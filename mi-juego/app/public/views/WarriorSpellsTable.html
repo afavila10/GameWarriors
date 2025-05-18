@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>List of race</title>
+    <title>List of warrior spells</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,12 +13,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="/mi-juego/app/assets/css/style.css">
+    <link rel="stylesheet" href="/app/assets/css/style.css">
 </head>
 
 <body>
     <!-- Sidebar -->
-     <!-- Incluir sidebar -->
+    <!-- Incluir sidebar -->
     <div id="sidebar"></div>
 
     <!-- Contenido principal -->
@@ -48,9 +48,11 @@
                 <table class="table table-bordered table-striped table-hover align-middle text-center">
                     <thead class="table-dark">
                         <tr>
-                            <th>ID</th>
+                            <th>id</th>
                             <th>warrior id</th>
-                            <th>Name spell</th>
+                            <th>spell id</th>
+                            <th>name</th>
+                            <th>percentage</th>
                             <th>Acciones </th>
                         </tr>
                     </thead>
@@ -62,30 +64,35 @@
         </div>
     </div>
 
-    <!-- Modal para editar el usuario-->
+
+    <!-- Modal para editar el hechizo del guerrero -->
     <div class="modal fade" id="editWarriorSpellsModal" tabindex="-1" aria-labelledby="editWarriorSpellsModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content align-items">
+            <div class="modal-content">
                 <form id="editWarriorSpellsForm">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editWarriorSpellsModalLabel">Edit WarriorSpells</h5>
+                        <h5 class="modal-title" id="editWarriorSpellsModalLabel">Editar Hechizo del Guerrero</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
-                    <div class="modal-body row-3">
+                    <div class="modal-body row">
+                        <!-- ID del spell warrior oculto -->
                         <input type="hidden" id="editWarriorSpellsId">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">warrio id</label>
-                            <input type="number" class="form-control" id="editWarriorWarriorId" required>
+                            <label class="form-label">warrior id</label>
+                            <input type="number" class="form-control" id="editWarriorId" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Spell id</label>
-                            <input type="number" class="form-control" id="editWarriorSpellsTypeId" required>
+                            <label class="form-label">ID del Hechizo Antiguo</label>
+                            <input type="number" class="form-control" id="editOldSpellId" required>
                         </div>
-                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">ID del Nuevo Hechizo</label>
+                            <input type="number" class="form-control" id="editNewSpellId" required>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Save Changes</button>
+                        <button type="submit" class="btn btn-success">Guardar Cambios</button>
                     </div>
                 </form>
             </div>
@@ -104,7 +111,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="createSpellId" class="form-label">warrior id</label>
-                            <input type="number" class="form-control" id="createSpellId" required>
+                            <input type="number" class="form-control" id="createWarriorId" required>
                         </div>
                         <div class="mb-3">
                             <label for="createSpellId" class="form-label">spell id</label>
@@ -121,9 +128,9 @@
 
 
     <!-- Scripts -->
-     <script src="/mi-juego/app/assets/js/loadSidebar.js"></script>
-    <script src="/mi-juego/app/assets/js/WarriorSpellsTable.js"></script>
-    <script src="/mi-juego/app/assets/js/CerrarSesion.js"></script>
+    <script src="/app/assets/js/loadSidebar.js"></script>
+    <script src="/app/assets/js/WarriorSpellsTable.js"></script>
+    <script src="/app/assets/js/CerrarSesion.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

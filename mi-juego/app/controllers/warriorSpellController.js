@@ -26,6 +26,21 @@ exports.assignSpellToWarrior = (req, res) => {
     });
 };
 
+// Actualizar un hechizo asignado a un guerrero
+exports.updateSpellsWarrior = (req, res) => {
+    const { warrior_id, old_spell_id, new_spell_id } = req.body;
+
+    if (!warrior_id || !old_spell_id || !new_spell_id) {
+        return res.status(400).json({ error: "Faltan datos requeridos en la solicitud" });
+    }
+
+    warriorSpellsModel.updateSpellsWarrior(warrior_id, old_spell_id, new_spell_id, (err) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ message: "Hechizo del guerrero actualizado con éxito" });
+    });
+};
+
+
 // Eliminar hechizo de guerrero
 exports.removeWarriorSpell = (req, res) => {
     const { warrior_id, spell_id } = req.params;

@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (res.ok) {
-                fetchProfiles();
+                fetchSpells();
             } else {
                 console.error('Error al eliminar spells');
             }
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const percentage = document.getElementById("createPercentage").value.trim();
 
         // Validación básica
-        if (!name || !description || !percentage ) {
+        if (!name || !description || !percentage) {
             alert("Por favor, completa todos los campos correctamente.");
             return;
         }

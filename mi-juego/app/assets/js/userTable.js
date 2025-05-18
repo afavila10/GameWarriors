@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (res.ok) {
-                fetchProfiles();
+                fetchUsers();
             } else {
                 console.error('Error al eliminar user');
             }
