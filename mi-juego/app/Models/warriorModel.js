@@ -60,16 +60,22 @@ module.exports = {
   updateWarrior(id, data, callback) {
     const {
       name,
+      Total_Powers,
+      Total_Magic,
+      Health,
+      Speed,
+      Intenlligence,
+      Status,
       race_id,
       type_id
     } = data;
 
     const query = `
       UPDATE Warrior 
-      SET name = ?, race_id = ?, type_id = ? 
+      SET name = ?, Total_Powers = ?, Total_Magic = ?, Health = ?, Speed = ?, Intenlligence = ?, Status = ?, race_id = ?, type_id = ? 
       WHERE warrior_id = ?`;
 
-    const params = [name, race_id, type_id, id];
+    const params = [name,Total_Powers, Total_Magic,Health,Speed,Intenlligence,Status, race_id, type_id, id];
     db.run(query, params, callback);
   },
 

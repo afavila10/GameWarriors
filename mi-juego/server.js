@@ -32,6 +32,7 @@ app.use(express.json());
 app.use('/assets', express.static('app/assets'));
 app.use(express.static("app/views"));
 
+
 // Rutas
 app.use('/warriors', warriorRoutes);
 app.use('/powers', powerRoutes);
@@ -43,6 +44,7 @@ app.use('/api/users', userRoutes);
 app.use('/races', raceRoutes);
 app.use('/warrior_type', warriorTypeRoutes);
 app.use('/partida', partidaRoutes);
+
 
 //Conexión Socket.io
 io.on('connection', (socket) => {
