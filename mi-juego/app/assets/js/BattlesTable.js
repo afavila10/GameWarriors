@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${battle.round}</td>
 
             <td>
-              <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(battles)})'>
+              <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(battle)})'>
                 <i class="fas fa-edit"></i>
               </button>
               <button class="btn btn-danger btn-sm" onclick="deleteBattles(${battle.id})">
@@ -43,9 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Abrir modal y rellenar datos
     window.openEditModal = (battles) => {
         document.getElementById('editBattlesId').value = battles.id;
-        document.getElementById('editBattlesWarrior').value = battles.warrior1_name;
-        document.getElementById('editBattlesWarrior2').value = battles.warrior2_name;
-        document.getElementById('editBattlesWinner').value = battles.winner_name;
+        document.getElementById('editBattlesWarrior').value = battles.warrior1_id;
+        document.getElementById('editBattlesWarrior2').value = battles.warrior2_id;
+        document.getElementById('editBattlesWinner').value = battles.winner_id;
         document.getElementById('editBattlesRound').value = battles.round;
 
         const modal = new bootstrap.Modal(document.getElementById('editBattlesModal'));
@@ -55,14 +55,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Enviar edición
     editBattlesForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+
         const id = document.getElementById('editBattlesId').value;
+        console.log('el id que se va  enviar es '+ id);
 
         const updatedBattles = {
-            warrior1_name: document.getElementById('editBattlesWarrior').value,
-            warrior2_name: document.getElementById('editBattlesWarrior2').value,
-            winner_name: document.getElementById('editBattlesWinner').value,
+            warrior1_id: document.getElementById('editBattlesWarrior').value,
+            warrior2_id: document.getElementById('editBattlesWarrior2').value,
+            winner_id: document.getElementById('editBattlesWinner').value,
             round: document.getElementById('editBattlesRound').value,
         };
+        console.log('el datos para actualizar '+ updatedBattles);
 
         try {
 
@@ -107,13 +110,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("createBattlesForm").addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        const warrior1_name = document.getElementById("createName").value.trim();
-        const warrior2_name = document.getElementById("createTotalPowers").value.trim();
-        const winner_name = document.getElementById("createTotalMagic").value.trim();
-        const round = document.getElementById("createHealth").value.trim();
+        const warrior1_id = document.getElementById("createWarrior").value.trim();
+        const warrior2_id = document.getElementById("createWarrior2").value.trim();
+        const winner_id = document.getElementById("createWinner").value.trim();
+        const round = document.getElementById("createRound").value.trim();
 
+        
         // Validación básica
-        if (!warrior1_name || !warrior2_name || !winner_name || !round) {
+        if (!warrior1_id || !warrior2_id || !winner_id || !round) {
             alert("Por favor, completa todos los campos correctamente.");
             return;
         }
@@ -125,9 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    warrior1_name,
-                    warrior2_name,
-                    winner_name,
+                    warrior1_id,
+                    warrior2_id,
+                    winner_id,
                     round
                 })
             });
@@ -141,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const modal = bootstrap.Modal.getInstance(document.getElementById("createBattlesModal"));
                 modal.hide();
                 await fetchBattles(); // Recarga la tabla con los perfiles actualizados
+                  // <-- Agregado
             } else {
                 alert("Error al crear un Battles: " + result.error);
             }

@@ -29,8 +29,8 @@ exports.createPartida = (req, res) => {
 // Actualizar un partida
 exports.updatePartida = (req, res) => {
     const { id } = req.params;
-    const { nombre, conectados, estado, creado_en} = req.body;
-    PartidaModel.updatePartida(id,nombre, conectados, estado, creado_en, function (err) {
+    const { nombre, conectados, estado } = req.body;
+    PartidaModel.updatePartida(id,nombre, conectados, estado, function (err) {
         if (err) return res.status(500).json({ error: err.message });
         res.json({ message: "partida actualizada correctamente" });
     });

@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("logoutBtn").addEventListener("click", () => {
         localStorage.removeItem("token");
         localStorage.removeItem("username");
-        window.location.href = "/src/views/login.html";
+        window.location.href = "/mi-juego/app/views/login.html";
     });
 });
 

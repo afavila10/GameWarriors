@@ -13,9 +13,9 @@ exports.createPartida = (nombre,callback) => {
     db.run(query, [nombre], callback);
 };
 
-exports.updatePartida = (id,nombre, conectados, estado, creado_en, callback) => {
-    const query = "UPDATE partidas SET nombre = ?, conectados = ?, estado = ?, creado_en= ? WHERE id = ?";
-    db.run(query, [nombre, conectados, estado, creado_en, id], callback);
+exports.updatePartida = (id,nombre, conectados, estado, callback) => {
+    const query = "UPDATE partidas SET nombre = ?, conectados = ?, estado = ? WHERE id = ?";
+    db.run(query, [nombre, conectados, estado, id], callback);
 };
 
 exports.deletePartida = (id, callback) => {
