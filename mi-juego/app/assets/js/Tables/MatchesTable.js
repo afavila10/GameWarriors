@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(matche)})'>
                 <i class="fas fa-edit"></i>
               </button>
+              <button class="btn btn-success btn-sm" onclick="showMatches(${matche.id})">
+                <i class="fa-solid fa-eye"></i>
+              </button>
               <button class="btn btn-danger btn-sm" onclick="deleteMatches(${matche.id})">
                 <i class="fas fa-trash-alt"></i>
               </button>
@@ -102,6 +105,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('Error en la solicitud DELETE:', error);
+        }
+    };
+
+
+    //ver detalles 
+    window.showMatches= async function (id) {
+    try {
+        console.log("Obteniendo detalles del matches con ID:", id);
+        const res = await fetch(`http://localhost:3000/partida/${id}`);
+        if (!res.ok) throw new Error("The matche could not be retrieved.");
+        const matche = await res.json();
+        
+        // Asigna los datos al modal (usa exactamente los mismos nombres)
+        document.getElementById("viewMatchesId").textContent = matche.id;
+        document.getElementById("viewMatchesName").textContent = matche.nombre;
+        document.getElementById("viewMatchesConnected").textContent = matche.conectados;
+        document.getElementById("viewMatchesStatus").textContent = matche.estado;
+        document.getElementById("viewMatchesCreateAt").textContent = matche.creado_en;
+
+        // Muestra el modal
+        document.activeElement.blur(); // evita error de aria-hidden
+        const modal = new bootstrap.Modal(document.getElementById("viewMatchesModal"));
+        modal.show();
+        } catch (error) {
+            console.error("Error loading Matche details:", error);
+            alert("There was a problem loading the Matche details.");
         }
     };
 

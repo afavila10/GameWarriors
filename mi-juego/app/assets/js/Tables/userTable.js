@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(user)})'>
                 <i class="fas fa-edit"></i>
               </button>
+              <button class="btn btn-success btn-sm" onclick="showUser(${user.user_id})">
+                <i class="fa-solid fa-eye"></i>
+              </button>
               <button class="btn btn-danger btn-sm" onclick="deleteUser(${user.user_id})">
                 <i class="fas fa-trash-alt"></i>
               </button>
@@ -39,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Abrir modal y rellenar datos
     window.openEditModal = (user) => {
+        document.activeElement.blur(); //
+
         document.getElementById('editUserId').value = user.user_id;
         document.getElementById('editUserName').value = user.username;
         document.getElementById('editUserEmail').value = user.email;
@@ -97,6 +102,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Mostrar detalles
+    window.showUser = async function (id) {
+        try {
+            document.activeElement.blur();
+            //console.log("Obteniendo detalles del usuario con ID:", id);
+            const res = await fetch(`http://localhost:3000/api/users/${id}`);
+            if (!res.ok) throw new Error("The user could not be retrieved.");
+            const user = await res.json();
+
+            //asigna los datos al modal
+
+            document.getElementById("viewUserId").textContent = user.user_id;
+            document.getElementById("viewUsername").textContent = user.username;
+            document.getElementById("viewUserEmail").textContent = user.email;
+
+            //muestra el modal
+            const modal = new bootstrap.Modal(document.getElementById("viewUserModal"));
+            //modal.removeAttribute("inert");
+            
+            modal.show();
+        } catch (error) {
+            console.error("Error loading user details");
+            alert("There was a problem loading the users details.");
+        }
+    };
+
     //Modal
     document.getElementById("createUserForm").addEventListener("submit", async function (e) {
         e.preventDefault();
@@ -139,6 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Error al conectar con el servidor: " + error.message);
         }
     });
+
+
+
+
 });
 
 

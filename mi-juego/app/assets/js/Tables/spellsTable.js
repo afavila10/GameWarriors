@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(spell)})'>
                 <i class="fas fa-edit"></i>
               </button>
+              <button class="btn btn-success btn-sm" onclick="showSpells(${spell.spell_id})">
+                <i class="fa-solid fa-eye"></i>
+              </button>
               <button class="btn btn-danger btn-sm" onclick="deleteSpells(${spell.spell_id})">
                 <i class="fas fa-trash-alt"></i>
               </button>
@@ -94,6 +97,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('Error en la solicitud DELETE:', error);
+        }
+    };
+
+    //ver detalles 
+    window.showSpells= async function (id) {
+    try {
+        console.log("Obteniendo detalles del spells con ID:", id);
+        const res = await fetch(`http://localhost:3000/spells/${id}`);
+        if (!res.ok) throw new Error("The warrior could not be retrieved.");
+        const spell = await res.json();
+        
+        // Asigna los datos al modal (usa exactamente los mismos nombres)
+        document.getElementById("viewSpellId").textContent = spell.spell_id;
+        document.getElementById("viewSpellName").textContent = spell.name;
+        document.getElementById("viewSpellDescription").textContent = spell.description;
+        document.getElementById("viewSpellPercentage").textContent = spell.percentage;
+
+        // Muestra el modal
+        document.activeElement.blur(); // evita error de aria-hidden
+        const modal = new bootstrap.Modal(document.getElementById("viewSpellsModal"));
+        modal.show();
+        } catch (error) {
+            console.error("Error loading spells details:", error);
+            alert("There was a problem loading the spells details.");
         }
     };
 

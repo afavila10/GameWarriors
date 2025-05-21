@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(battle)})'>
                 <i class="fas fa-edit"></i>
               </button>
+              <button class="btn btn-success btn-sm" onclick="showBattles(${battle.id})">
+                <i class="fa-solid fa-eye"></i>
+              </button>
               <button class="btn btn-danger btn-sm" onclick="deleteBattles(${battle.id})">
                 <i class="fas fa-trash-alt"></i>
               </button>
@@ -105,6 +108,34 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error en la solicitud DELETE:', error);
         }
     };
+
+    //ver detalles 
+    window.showBattles= async function (id) {
+    try {
+        console.log("Obteniendo detalles del Battles con ID:", id);
+        const res = await fetch(`http://localhost:3000/battles/${id}`);
+        if (!res.ok) throw new Error("The battle could not be retrieved.");
+        const battle = await res.json();
+        
+        // Asigna los datos al modal (usa exactamente los mismos nombres)
+        document.getElementById("viewBattleId").textContent = battle.id;
+        document.getElementById("viewBattleRound").textContent = battle.round;
+        document.getElementById("viewBattleWarrior1").textContent = battle.warrior1_name;
+        document.getElementById("viewBattleWarrior2").textContent = battle.warrior2_name;
+        document.getElementById("viewBattleWinner").textContent = battle.winner_name;
+        
+
+        // Muestra el modal
+        document.activeElement.blur(); // evita error de aria-hidden
+        const modal = new bootstrap.Modal(document.getElementById("viewBattlesModal"));
+        modal.show();
+        } catch (error) {
+            console.error("Error loading battle details:", error);
+            alert("There was a problem loading the battle details.");
+        }
+    };
+
+
 
     //Modal
     document.getElementById("createBattlesForm").addEventListener("submit", async function (e) {

@@ -48,7 +48,7 @@ exports.getAllBattles = (req, res) => {
     }
 };
 
-// Obtener una batalla por ID
+/*Obtener una batalla por ID
 exports.getBattleById = (req, res) => {
     const { id } = req.params;
     db.get("SELECT * FROM battles WHERE id = ?", [id], (err, row) => {
@@ -56,7 +56,44 @@ exports.getBattleById = (req, res) => {
         if (!row) return res.status(404).json({ error: "Batalla no encontrada" });
         res.json(row);
     });
+};*/
+
+exports.getBattleById = (req, res) => {
+    const { id } = req.params;
+
+    const query = `
+        SELECT 
+            b.id, 
+            b.round, 
+            w1.name AS warrior1_name, 
+            w2.name AS warrior2_name, 
+            w3.name AS winner_name 
+        FROM battles b
+        LEFT JOIN warrior w1 ON b.warrior1_id = w1.warrior_id
+        LEFT JOIN warrior w2 ON b.warrior2_id = w2.warrior_id
+        LEFT JOIN warrior w3 ON b.winner_id = w3.warrior_id
+        WHERE b.id = ?
+    `;
+
+    try {
+        db.get(query, [id], (err, row) => {
+            if (err) {
+                console.error("❌ Error al consultar batalla:", err.message);
+                return res.status(500).json({ error: "Error al obtener la batalla" });
+            }
+            if (!row) {
+                return res.status(404).json({ error: "Batalla no encontrada" });
+            }
+
+            res.json(row);
+        });
+    } catch (error) {
+        console.error("❌ Excepción en getBattleById:", error.message);
+        res.status(500).json({ error: "Error inesperado" });
+    }
 };
+
+
 
 // Crear una nueva ronda en la batalla
 exports.createBattle = (req, res) => {

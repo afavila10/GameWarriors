@@ -124,10 +124,30 @@
         </div>
     </div>
 
+    <!--Modal para mostar detalles-->
+    <div class="modal fade" id="viewUserModal" tabindex="-1" aria-labelledby="viewUserModalLabel"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewUserModalLabel">Detalles del Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    
+                    <p><strong style="color: rgb(106, 188, 24);">ID:</strong> <span id="viewUserId"></span></p>
+                    <p><strong style="color: rgb(106, 188, 24);">Nombre de usuario:</strong> <span id="viewUsername"></span></p>
+                    <p><strong style="color: rgb(106, 188, 24);">Email:</strong> <span id="viewUserEmail"></span></p>
+                    <!-- Puedes añadir más campos si los tienes -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- Scripts -->
     <script src="/mi-juego/app/assets/js/loadSidebar.js"></script>
-    <script src="/mi-juego/app/assets/js/userTable.js"></script>
+    <script src="/mi-juego/app/assets/js/Tables/userTable.js"></script>
     <script src="/mi-juego/app/assets/js/CerrarSesion.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

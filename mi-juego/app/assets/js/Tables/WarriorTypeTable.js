@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(warriorType)})'>
                 <i class="fas fa-edit"></i>
               </button>
+              <button class="btn btn-success btn-sm" onclick="showWarriorType(${warriorType.type_id})">
+                <i class="fa-solid fa-eye"></i>
+              </button>
               <button class="btn btn-danger btn-sm" onclick="deleteWarriorType(${warriorType.type_id})">
                 <i class="fas fa-trash-alt"></i>
               </button>
@@ -91,6 +94,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('Error en la solicitud DELETE:', error);
+        }
+    };
+
+    //ver detalles 
+    window.showWarriorType= async function (id) {
+    try {
+        console.log("Obteniendo detalles del warrior type con ID:", id);
+        const res = await fetch(`http://localhost:3000/warrior_type/${id}`);
+        if (!res.ok) throw new Error("The warrior could not be retrieved.");
+        const WarriorType = await res.json();
+        //const WarriorSpell = WarriorSpells[0]; // Accede al primer elemento
+       
+
+        // Asigna los datos al modal (usa exactamente los mismos nombres)
+        document.getElementById("viewWarriorTypeId").textContent = WarriorType.type_id;
+        document.getElementById("viewWarriorTypeName").textContent = WarriorType.name;
+        document.getElementById("viewWarriorTypeDescription").textContent = WarriorType.description;
+
+        // Muestra el modal
+        document.activeElement.blur(); // evita error de aria-hidden
+        const modal = new bootstrap.Modal(document.getElementById("viewWarriorTypeModal"));
+        modal.show();
+        } catch (error) {
+            console.error("Error loading warrior details:", error);
+            alert("There was a problem loading the warrior Type details.");
         }
     };
 

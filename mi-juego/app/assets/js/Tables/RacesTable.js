@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(race)})'>
                 <i class="fas fa-edit"></i>
               </button>
+              <button class="btn btn-success btn-sm" onclick="showRaces(${race.race_id})">
+                <i class="fa-solid fa-eye"></i>
+              </button>
               <button class="btn btn-danger btn-sm" onclick="deleteRaces(${race.race_id})">
                 <i class="fas fa-trash-alt"></i>
               </button>
@@ -91,6 +94,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('Error en la solicitud DELETE:', error);
+        }
+    };
+
+
+    //ver detalles 
+    window.showRaces= async function (id) {
+    try {
+        console.log("Obteniendo detalles de races con ID:", id);
+        const res = await fetch(`http://localhost:3000/races/${id}`);
+        if (!res.ok) throw new Error("The warrior could not be retrieved.");
+        const race = await res.json();
+        //const WarriorSpell = WarriorSpells[0]; // Accede al primer elemento
+       
+
+        // Asigna los datos al modal (usa exactamente los mismos nombres)
+        document.getElementById("viewRaceId").textContent = race.race_id;
+        document.getElementById("viewRaceName").textContent = race.name;
+        document.getElementById("viewRaceDescription").textContent = race.description;
+
+        // Muestra el modal
+        document.activeElement.blur(); // evita error de aria-hidden
+        const modal = new bootstrap.Modal(document.getElementById("viewRaceModal"));
+        modal.show();
+        } catch (error) {
+            console.error("Error loading race details:", error);
+            alert("There was a problem loading the races details.");
         }
     };
 

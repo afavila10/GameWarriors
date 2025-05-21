@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(WarriorSpell)})'>
                 <i class="fas fa-edit"></i>
               </button>
+              <button class="btn btn-success btn-sm" onclick="showWarriorSpells(${WarriorSpell.id})">
+                <i class="fa-solid fa-eye"></i>
+              </button>
               <button class="btn btn-danger btn-sm" onclick="deleteWarriorSpells(${WarriorSpell.warrior_id}, ${WarriorSpell.spell_id})">
                 <i class="fas fa-trash-alt"></i>
               </button>
@@ -99,6 +102,34 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('Error en la solicitud DELETE:', error);
+        }
+    };
+
+    //ver detalles 
+    window.showWarriorSpells= async function (id) {
+    try {
+        console.log("Obteniendo detalles del warrior Spells con ID:", id);
+        const res = await fetch(`http://localhost:3000/warriorSpells/${id}`);
+        if (!res.ok) throw new Error("The warrior could not be retrieved.");
+        const WarriorSpells = await res.json();
+        const WarriorSpell = WarriorSpells[0]; // Accede al primer elemento
+       
+
+        // Asigna los datos al modal (usa exactamente los mismos nombres)
+        
+        document.getElementById("viewWarriorSpellWarriorId").textContent = WarriorSpell.warrior_id;
+        document.getElementById("viewWarriorSpellPowerId").textContent = WarriorSpell.spell_id;
+        document.getElementById("viewWarriorSpellName").textContent = WarriorSpell.name;
+        document.getElementById("viewWarriorSpellPercentage").textContent = WarriorSpell.percentage;
+    
+
+        // Muestra el modal
+        document.activeElement.blur(); // evita error de aria-hidden
+        const modal = new bootstrap.Modal(document.getElementById("viewWarriorSpellModal"));
+        modal.show();
+        } catch (error) {
+            console.error("Error loading warrior  spells details:", error);
+            alert("There was a problem loading the warrior spell details.");
         }
     };
 

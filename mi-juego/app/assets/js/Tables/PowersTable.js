@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(power)})'>
                 <i class="fas fa-edit"></i>
               </button>
+              <button class="btn btn-success btn-sm" onclick="showPowers(${power.power_id})">
+                <i class="fa-solid fa-eye"></i>
+              </button>
               <button class="btn btn-danger btn-sm" onclick="deletePowers(${power.power_id})">
                 <i class="fas fa-trash-alt"></i>
               </button>
@@ -96,6 +99,31 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error en la solicitud DELETE:', error);
         }
     };
+
+    //ver detalles 
+    window.showPowers= async function (id) {
+    try {
+        console.log("Obteniendo detalles del Powers con ID:", id);
+        const res = await fetch(`http://localhost:3000/powers/${id}`);
+        if (!res.ok) throw new Error("The warrior could not be retrieved.");
+        const power = await res.json();
+        
+        // Asigna los datos al modal (usa exactamente los mismos nombres)
+        document.getElementById("viewPowerId").textContent = power.power_id;
+        document.getElementById("viewPowerName").textContent = power.name;
+        document.getElementById("viewPowerDescription").textContent = power.description;
+        document.getElementById("viewPowerPercentage").textContent = power.percentage;
+
+        // Muestra el modal
+        document.activeElement.blur(); // evita error de aria-hidden
+        const modal = new bootstrap.Modal(document.getElementById("viewPowersModal"));
+        modal.show();
+        } catch (error) {
+            console.error("Error loading power details:", error);
+            alert("There was a problem loading the powers details.");
+        }
+    };
+
 
     //Modal
     document.getElementById("createPowersForm").addEventListener("submit", async function (e) {

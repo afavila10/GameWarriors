@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(warrior)})'>
                 <i class="fas fa-edit"></i>
               </button>
+              <button class="btn btn-success btn-sm" onclick="showWarrior(${warrior.warrior_id})">
+                <i class="fa-solid fa-eye"></i>
+              </button>
               <button class="btn btn-danger btn-sm" onclick="deleteWarrior(${warrior.warrior_id})">
                 <i class="fas fa-trash-alt"></i>
               </button>
@@ -98,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Eliminar perfil
+    // Eliminar warrior
     window.deleteWarrior = async (id) => {
         if (!confirm('¿Estás seguro de que deseas eliminar este warrior?')) return;
 
@@ -116,6 +119,39 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error en la solicitud DELETE:', error);
         }
     };
+
+    //ver warrior
+    window.showWarrior = async function (id) {
+    try {
+        console.log("Obteniendo detalles del warrior con ID:", id);
+        const res = await fetch(`http://localhost:3000/warriors/${id}`);
+        if (!res.ok) throw new Error("The warrior could not be retrieved.");
+        const warrior = await res.json();
+        console.log(warrior);
+
+        // Asigna los datos al modal (usa exactamente los mismos nombres)
+        document.getElementById("viewWarriorId").textContent = warrior.warrior_id;
+        document.getElementById("viewWarriorname").textContent = warrior.name;
+        document.getElementById("viewWarriorPower").textContent = warrior.Total_Powers;
+        document.getElementById("viewWarriorMagic").textContent = warrior.Total_Magic;
+        document.getElementById("viewWarriorHealth").textContent = warrior.Health;
+        document.getElementById("viewWarriorSpeed").textContent = warrior.Speed;
+        document.getElementById("viewWarriorIntenlligence").textContent = warrior.Intenlligence;
+        document.getElementById("viewWarriorStatus").textContent = warrior.Status;
+        document.getElementById("viewWarriorType").textContent = warrior.type_id;
+        document.getElementById("viewWarriorRace").textContent = warrior.race_id;
+
+        // Muestra el modal
+        document.activeElement.blur(); // evita error de aria-hidden
+        const modal = new bootstrap.Modal(document.getElementById("viewWarriorModal"));
+        modal.show();
+        } catch (error) {
+            console.error("Error loading warrior details:", error);
+            alert("There was a problem loading the warrior details.");
+        }
+    };
+
+
 
     //Modal
     document.getElementById("createWarriorForm").addEventListener("submit", async function (e) {
