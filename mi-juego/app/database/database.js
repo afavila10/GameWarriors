@@ -44,12 +44,35 @@ db.serialize(() => {
         FOREIGN KEY (race_id) REFERENCES RACE(race_id)
     )`);
 
-    db.run(`CREATE TABLE IF NOT EXISTS USERS (
-        user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE NOT NULL,
-        email TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL
+    db.run(`CREATE TABLE IF NOT EXISTS users (
+        user_id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(50),
+        email VARCHAR(100) UNIQUE,
+        password VARCHAR(255),
+        role_id INT NOT NULL DEFAULT 1,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (role_id) REFERENCES roles(id)
     )`);
+
+    db.run(`CREATE TABLE IF NOT EXISTS roles (
+        id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+        name VARCHAR(50),
+        description VARCHAR(200)
+    )`);
+    
+    db.run(`CREATE TABLE IF NOT EXISTS modules (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100), -- Ej: 'users', 'warriors', 'battles'
+        description VARCHAR(200)
+    )`);
+
+    db.run(`CREATE TABLE IF NOT EXISTS permissions (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        role_id INT,
+        module_id INT,
+        FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
+        FOREIGN KEY (module_id) REFERENCES modules(id) ON DELETE CASCADE
+    )`)
 
     db.run(`CREATE TABLE IF NOT EXISTS BATTLES (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

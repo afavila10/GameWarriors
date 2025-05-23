@@ -23,24 +23,6 @@ exports.assignPowerToWarrior = (req, res) => {
     });
 };
 
-/*PUT /warrior-powers/:warrior_id/update
-exports.updatePower = (req, res) => {
-    const { id } = req.params;
-    const { new_power_id } = req.body;
-
-    if (!new_power_id) {
-        return res.status(400).json({ error: "new_power_id es requerido" });
-    }
-
-    warriorPowersModel.updatePower(id, new_power_id, (err, changes) => {
-        if (err) return res.status(500).json({ error: err.message });
-        if (changes === 0) {
-            return res.status(404).json({ message: "No se encontró el id o fue cambiado." });
-        }
-        res.json({ message: "Poder actualizado correctamente" });
-    });
-};*/
-
 exports.updatePower = (req, res) => {
     const { id } = req.params;
     const { new_power_id } = req.body;

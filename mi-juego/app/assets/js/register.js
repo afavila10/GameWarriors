@@ -5,13 +5,15 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     const username = document.getElementById("username").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+    //const role_id = document.getElementById("role").value;7
+    const role_id = 1; //por defecto rol 1 user
     const errorMsg = document.getElementById("errorMsg");
 
     try {
         const response = await fetch("http://localhost:3000/api/users/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, email, password }),
+            body: JSON.stringify({ username, email, password, role_id}),
         });
 
         const data = await response.json();

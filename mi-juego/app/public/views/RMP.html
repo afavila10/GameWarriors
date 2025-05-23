@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>List of warrior Powers</title>
+    <title>List of Roles Modules Permissions</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -39,24 +39,23 @@
 
         <h1 class="title">Home</h1>
         <div class="container mt-5">
-            <h2 class="mb-4">List of Warrior Powers</h2>
-            <!-- Botón add warrior power -->
-            <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#createWarriorPowersModal">
-                <i class="fas fa-user-plus"></i> Add warrior Powers
+            <h2 class="mb-4">List of Roles Modules Permissionss</h2>
+            <!-- Botón add Roles Modules Permissionss -->
+            <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#createRMPModal">
+                <i class="fas fa-user-plus"></i> Add Roles Modules Permissionss
             </button>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover align-middle text-center">
                     <thead class="table-dark">
                         <tr>
                             <th>id</th>
-                            <th>warrior id</th>
-                            <th>Power id</th>
-                            <th>name</th>
-                            <th>percentage</th>
+                            <th>Role id</th>
+                            <th>Module id</th>
+                            <th>Permission id</th>
                             <th>Acciones </th>
                         </tr>
                     </thead>
-                    <tbody id="WarriorPowersTableBody">
+                    <tbody id="RMPTableBody">
                         <!-- Contenido generado dinámicamente -->
                     </tbody>
                 </table>
@@ -64,21 +63,29 @@
         </div>
     </div>
 
-    <!-- Modal para editar el usuario-->
-    <div class="modal fade" id="editWarriorPowersModal" tabindex="-1" aria-labelledby="editWarriorPowersModalLabel"
+    <!-- Modal para editar el usuario rol-->
+    <div class="modal fade" id="editRMPModal" tabindex="-1" aria-labelledby="editRMPModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content align-items">
-                <form id="editWarriorPowersForm">
+                <form id="editRMPForm">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editWarriorPowersModalLabel">Edit WarriorPowers</h5>
+                        <h5 class="modal-title" id="editRMPModalLabel">Edit RMP</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body row-3">
-                        <input type="hidden" id="editWarriorPowerId">
+                        <input type="hidden" id="editRMPId">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Id del nuevo poder</label>
-                            <input type="number" class="form-control" id="editNewPowerId" required>
+                            <label class="form-label">Id del nuevo role id</label>
+                            <input type="number" class="form-control" id="editNewRoleId" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Id del nuevo module id</label>
+                            <input type="number" class="form-control" id="editNewModuleId" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Id del nuevo Permission id</label>
+                            <input type="number" class="form-control" id="editNewPermissionId" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -89,46 +96,51 @@
         </div>
     </div>
 
-    <!--Modal para crear el warrior-->
-    <div class="modal fade" id="createWarriorPowersModal" tabindex="-1" aria-labelledby="createWarriorPowersModalLabel">
+    <!--Modal para crear el usuario rol-->
+    <div class="modal fade" id="createRMPModal" tabindex="-1" aria-labelledby="createRMPModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="createWarriorPowersForm">
+                <form id="createRMPForm">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="createWarriorPowersModalLabel">Create WarriorPowers</h5>
+                        <h5 class="modal-title" id="createRMPModalLabel">Create Roles Modules Permissionss</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body">
+                        
                         <div class="mb-3">
-                            <label for="createWarriorId" class="form-label">warrior id</label>
-                            <input type="number" class="form-control" id="createWarriorId" required>
+                            <label for="createRoleId" class="form-label">Role id</label>
+                            <input type="number" class="form-control" id="createRoleId" required>
                         </div>
                         <div class="mb-3">
-                            <label for="createPowerId" class="form-label">Power id</label>
-                            <input type="number" class="form-control" id="createPowerId" required>
+                            <label for="createModuleId" class="form-label">module id</label>
+                            <input type="number" class="form-control" id="createModuleId" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="createPermissionId" class="form-label">Permission id</label>
+                            <input type="number" class="form-control" id="createPermissionId" required>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Create Warrior Powers</button>
+                        <button type="submit" class="btn btn-primary">Create Roles Modules Permissionss</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-     <!-- Modal: Ver Detalles de warrior Power-->
-    <div class="modal fade" id="viewWarriorPowerModal" tabindex="-1" aria-labelledby="viewWarriorPowerModalLabel"  aria-hidden="true">
+     <!-- Modal: Ver Detalles Role Module Permission-->
+    <div class="modal fade" id="viewRMPModal" tabindex="-1" aria-labelledby="viewRMPModalLabel"  aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="viewWarriorPowerModalLabel">Details of warrior Power</h5>
+                    <h5 class="modal-title" id="viewRMPModalLabel">Details of Roles Modules Permissions</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <p><strong style="color: rgb(106, 188, 24);">Warrior id:</strong> <span id="viewWarriorPowerWarriorId"></span></p>
-                    <p><strong style="color: rgb(106, 188, 24);">Power Id:</strong> <span id="viewWarriorPowerPowerId"></span></p>
-                    <p><strong style="color: rgb(106, 188, 24);">Name:</strong> <span id="viewWarriorPowerName"></span></p>
-                    <p><strong style="color: rgb(106, 188, 24);">percentage:</strong> <span id="viewWarriorPowerPercentage"></span></p>
+                    <p><strong style="color: rgb(106, 188, 24);">RMP id:</strong> <span id="viewRMPId"></span></p>
+                    <p><strong style="color: rgb(106, 188, 24);">Role id:</strong> <span id="viewRMPRoleId"></span></p>
+                    <p><strong style="color: rgb(106, 188, 24);">Module Id:</strong> <span id="viewRMPModuleId"></span></p>
+                    <p><strong style="color: rgb(106, 188, 24);">Permissions id:</strong> <span id="viewRMPPermissionId"></span></p>
                 </div>
             </div>
         </div>
@@ -136,7 +148,7 @@
 
     <!-- Scripts -->
     <script src="/mi-juego/app/assets/js/loadSidebar.js"></script>
-    <script src="/mi-juego/app/assets/js/Tables/WarriorPowersTable.js"></script>
+    <script src="/mi-juego/app/assets/js/Tables/RMPTable.js"></script>
     <script src="/mi-juego/app/assets/js/CerrarSesion.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

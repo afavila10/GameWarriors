@@ -6,7 +6,7 @@ const db = require('../database/database.js'); // Ajusta la ruta si es necesario
 
 // Obtener todos los usuarios
 exports.getAllUsers = (req, res) => {
-    db.all("SELECT user_id, username, email, password FROM USERS", [], (err, rows) => {
+    db.all("SELECT user_id, username, email,role_id password FROM USERS", [], (err, rows) => {
         if (err) return res.status(500).json({ error: "Error al obtener usuarios" });
         res.json(rows);
     });
@@ -16,7 +16,7 @@ exports.getAllUsers = (req, res) => {
 exports.getUserById = (req, res) => {
     const { id } = req.params;
 
-    db.get("SELECT user_id, username, email FROM USERS WHERE user_id = ?", [id], (err, user) => {
+    db.get("SELECT user_id, username, email, role_id FROM USERS WHERE user_id = ?", [id], (err, user) => {
         if (err) return res.status(500).json({ error: "Error al buscar usuario" });
         if (!user) return res.status(404).json({ error: "Usuario no encontrado" });
 
@@ -27,9 +27,9 @@ exports.getUserById = (req, res) => {
 // Actualizar usuario (username y email)
 exports.updateUser = (req, res) => {
     const { id } = req.params;
-    const { username, email } = req.body;
+    const { username, email , role_id } = req.body;
 
-    db.run("UPDATE USERS SET username = ?, email = ? WHERE user_id = ?", [username, email, id], function (err) {
+    db.run("UPDATE USERS SET username = ?, email = ?, role_id = ? WHERE user_id = ?", [username, email, role_id, id], function (err) {
         if (err) return res.status(500).json({ error: "Error al actualizar usuario" });
         if (this.changes === 0) return res.status(404).json({ error: "Usuario no encontrado" });
 
@@ -53,12 +53,11 @@ exports.deleteUser = (req, res) => {
 /*-------------REGISTRAR UN USUARIO Y LOGIN---------------*/
 // Registro
 exports.register = (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, role_id } = req.body;
 
     bcrypt.hash(password, 10, (err, hashedPassword) => {
         if (err) return res.status(500).json({ error: "Error al encriptar la contraseña" });
-
-        User.create(username, email, hashedPassword, (error, result) => {
+        User.create(username, email, hashedPassword, role_id, (error, result) => {
             if (error) {
                 if (error.message.includes("UNIQUE constraint failed")) {
                     return res.status(400).json({ error: "El usuario o correo ya existen" });

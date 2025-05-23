@@ -1,0 +1,23 @@
+const db = require('../database/database');
+
+exports.getAllUserRoles = (callback) => {
+    db.all("SELECT * FROM user_roles", [], callback);
+};
+
+exports.getUserRolesById = (id, callback) => {
+    db.get("SELECT * FROM user_roles WHERE id = ?", [id], callback);
+};
+
+exports.createUserRole = (user_id, role_id, callback) => {
+    const query = "INSERT INTO user_roles (user_id, role_id ) VALUES (?, ?)";
+    db.run(query, [user_id, role_id], callback);
+};
+
+exports.updateUserRole = (id, user_id, role_id, callback) => {
+    const query = "UPDATE user_roles SET user_id= ?, role_id = ? WHERE id = ?";
+    db.run(query, [user_id, role_id, id], callback);
+};
+
+exports.deleteUserRole = (id, callback) => {
+    db.run("DELETE FROM user_roles WHERE id = ?", [id], callback);
+};

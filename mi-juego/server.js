@@ -16,6 +16,11 @@ const raceRoutes = require("./app/routes/race");
 const warriorTypeRoutes = require("./app/routes/warriorType");
 const battleRoutes = require("./app/routes/battle");
 const partidaRoutes = require("./app/routes/partidas");
+const roleRoutes = require("./app/routes/roles");
+const moduleRoutes = require("./app/routes/modules");
+const PermissionRoutes = require("./app/routes/permissions");
+const UserRoleRoutes = require("./app/routes/UserRole");
+const RMPRoutes = require("./app/routes/roleModuloPermissions");
 
 // Socket logic
 const partidaSocketHandler = require('./app/sockets/partidasSocket');
@@ -44,6 +49,11 @@ app.use('/api/users', userRoutes);
 app.use('/races', raceRoutes);
 app.use('/warrior_type', warriorTypeRoutes);
 app.use('/partida', partidaRoutes);
+app.use('/roles', roleRoutes);
+app.use('/modules', moduleRoutes);
+app.use('/permissions', PermissionRoutes);
+app.use('/userRoles', UserRoleRoutes);
+app.use('/rmp', RMPRoutes);
 
 
 //Conexión Socket.io
