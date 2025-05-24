@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Abrir modal y rellenar datos
     window.openEditModal = (UserRole) => {
         document.getElementById('editUserRoleId').value = UserRole.id;
+        document.getElementById('editNewUserId').value = UserRole.user_id;
+        document.getElementById('editNewRoleId').value = UserRole.role_id;
 
 
         const modal = new bootstrap.Modal(document.getElementById('editUserRolesModal'));
@@ -102,21 +104,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //ver user roles
     window.showUserRoles = async function (id) {
-    try {
-        console.log("Obteniendo detalles del warrior Power con ID:", id);
-        const res = await fetch(`http://localhost:3000/userRoles/${id}`);
-        if (!res.ok) throw new Error("The warrior could not be retrieved.");
-        const UserRoles = await res.json();
-        
-        // Asigna los datos al modal (usa exactamente los mismos nombres)
-        document.getElementById("viewUserRoleId").textContent = UserRoles.id;
-        document.getElementById("viewUserRoleUserId").textContent = UserRoles.user_id;
-        document.getElementById("viewUserRoleRoleId").textContent = UserRoles.role_id;
-    
-        // Muestra el modal
-        document.activeElement.blur(); // evita error de aria-hidden
-        const modal = new bootstrap.Modal(document.getElementById("viewUserRoleModal"));
-        modal.show();
+        try {
+            console.log("Obteniendo detalles del warrior Power con ID:", id);
+            const res = await fetch(`http://localhost:3000/userRoles/${id}`);
+            if (!res.ok) throw new Error("The warrior could not be retrieved.");
+            const UserRoles = await res.json();
+
+            // Asigna los datos al modal (usa exactamente los mismos nombres)
+            document.getElementById("viewUserRoleId").textContent = UserRoles.id;
+            document.getElementById("viewUserRoleUserId").textContent = UserRoles.user_id;
+            document.getElementById("viewUserRoleRoleId").textContent = UserRoles.role_id;
+
+            // Muestra el modal
+            document.activeElement.blur(); // evita error de aria-hidden
+            const modal = new bootstrap.Modal(document.getElementById("viewUserRoleModal"));
+            modal.show();
         } catch (error) {
             console.error("Error loading user role details:", error);
             alert("There was a problem loading the user role details.");

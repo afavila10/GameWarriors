@@ -43,13 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+
+
     // Abrir modal y rellenar datos
     window.openEditModal = (battles) => {
         document.getElementById('editBattlesId').value = battles.id;
-        document.getElementById('editBattlesWarrior').value = battles.warrior1_id;
-        document.getElementById('editBattlesWarrior2').value = battles.warrior2_id;
-        document.getElementById('editBattlesWinner').value = battles.winner_id;
         document.getElementById('editBattlesRound').value = battles.round;
+        document.getElementById('editBattlesWarrior').value = battles.warrior1_name;
+        document.getElementById('editBattlesWarrior2').value = battles.warrior2_name;
+        document.getElementById('editBattlesWinner').value = battles.winner_name;
+
 
         const modal = new bootstrap.Modal(document.getElementById('editBattlesModal'));
         modal.show();
@@ -60,15 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         const id = document.getElementById('editBattlesId').value;
-        console.log('el id que se va  enviar es '+ id);
+        console.log('el id que se va  enviar es ' + id);
 
         const updatedBattles = {
             warrior1_id: document.getElementById('editBattlesWarrior').value,
             warrior2_id: document.getElementById('editBattlesWarrior2').value,
             winner_id: document.getElementById('editBattlesWinner').value,
             round: document.getElementById('editBattlesRound').value,
+
         };
-        console.log('el datos para actualizar '+ updatedBattles);
+        console.log('el datos para actualizar ' + updatedBattles);
 
         try {
 
@@ -110,25 +115,25 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     //ver detalles 
-    window.showBattles= async function (id) {
-    try {
-        console.log("Obteniendo detalles del Battles con ID:", id);
-        const res = await fetch(`http://localhost:3000/battles/${id}`);
-        if (!res.ok) throw new Error("The battle could not be retrieved.");
-        const battle = await res.json();
-        
-        // Asigna los datos al modal (usa exactamente los mismos nombres)
-        document.getElementById("viewBattleId").textContent = battle.id;
-        document.getElementById("viewBattleRound").textContent = battle.round;
-        document.getElementById("viewBattleWarrior1").textContent = battle.warrior1_name;
-        document.getElementById("viewBattleWarrior2").textContent = battle.warrior2_name;
-        document.getElementById("viewBattleWinner").textContent = battle.winner_name;
-        
+    window.showBattles = async function (id) {
+        try {
+            console.log("Obteniendo detalles del Battles con ID:", id);
+            const res = await fetch(`http://localhost:3000/battles/${id}`);
+            if (!res.ok) throw new Error("The battle could not be retrieved.");
+            const battle = await res.json();
 
-        // Muestra el modal
-        document.activeElement.blur(); // evita error de aria-hidden
-        const modal = new bootstrap.Modal(document.getElementById("viewBattlesModal"));
-        modal.show();
+            // Asigna los datos al modal (usa exactamente los mismos nombres)
+            document.getElementById("viewBattleId").textContent = battle.id;
+            document.getElementById("viewBattleRound").textContent = battle.round;
+            document.getElementById("viewBattleWarrior1").textContent = battle.warrior1_name;
+            document.getElementById("viewBattleWarrior2").textContent = battle.warrior2_name;
+            document.getElementById("viewBattleWinner").textContent = battle.winner_name;
+
+
+            // Muestra el modal
+            document.activeElement.blur(); // evita error de aria-hidden
+            const modal = new bootstrap.Modal(document.getElementById("viewBattlesModal"));
+            modal.show();
         } catch (error) {
             console.error("Error loading battle details:", error);
             alert("There was a problem loading the battle details.");
@@ -146,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const winner_id = document.getElementById("createWinner").value.trim();
         const round = document.getElementById("createRound").value.trim();
 
-        
+
         // Validación básica
         if (!warrior1_id || !warrior2_id || !winner_id || !round) {
             alert("Por favor, completa todos los campos correctamente.");
@@ -176,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const modal = bootstrap.Modal.getInstance(document.getElementById("createBattlesModal"));
                 modal.hide();
                 await fetchBattles(); // Recarga la tabla con los perfiles actualizados
-                  // <-- Agregado
+                // <-- Agregado
             } else {
                 alert("Error al crear un Battles: " + result.error);
             }

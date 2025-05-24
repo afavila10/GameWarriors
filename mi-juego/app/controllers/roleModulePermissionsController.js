@@ -1,6 +1,8 @@
 const RMPModel = require('../Models/RMPModel.js');
 
 // Obtener todos los Role Module Permissions
+
+// Ejemplo en RMPModel.js
 exports.getAllRMP = (req, res) => {
     RMPModel.getAllRMP((err, rows) => {
         if (err) return res.status(500).json({ error: err.message });
@@ -19,10 +21,10 @@ exports.getAllRMPById = (req, res) => {
 
 //Crear un nuevo Role Module Permission
 exports.createRMP = (req, res) => {
-    const { role_id, module_id, permission_id} = req.body;
-    RMPModel.createRMP(role_id, module_id, permission_id , function (err) {
+    const { role_id, module_id, permission_id } = req.body;
+    RMPModel.createRMP(role_id, module_id, permission_id, function (err) {
         if (err) return res.status(500).json({ error: err.message });
-        res.json({ id: this.lastID, message:"permiso creado correctamente" });
+        res.json({ id: this.lastID, message: "permiso creado correctamente" });
     });
 };
 
@@ -31,7 +33,7 @@ exports.createRMP = (req, res) => {
 exports.updateRMP = (req, res) => {
     const { id } = req.params;
     const { role_id, module_id, permission_id } = req.body;
-    RMPModel.updateRMP(id,role_id, module_id, permission_id, function (err) {
+    RMPModel.updateRMP(id, role_id, module_id, permission_id, function (err) {
         if (err) return res.status(500).json({ error: err.message });
         res.json({ message: "Role Module Permission actualizado correctamente" });
     });

@@ -6,7 +6,7 @@ const db = require('../database/database.js'); // Ajusta la ruta si es necesario
 
 // Obtener todos los usuarios
 exports.getAllUsers = (req, res) => {
-    db.all("SELECT user_id, username, email,role_id password FROM USERS", [], (err, rows) => {
+    db.all("SELECT user_id, username, email, password, role_id FROM USERS", [], (err, rows) => {
         if (err) return res.status(500).json({ error: "Error al obtener usuarios" });
         res.json(rows);
     });
@@ -27,7 +27,7 @@ exports.getUserById = (req, res) => {
 // Actualizar usuario (username y email)
 exports.updateUser = (req, res) => {
     const { id } = req.params;
-    const { username, email , role_id } = req.body;
+    const { username, email, role_id } = req.body;
 
     db.run("UPDATE USERS SET username = ?, email = ?, role_id = ? WHERE user_id = ?", [username, email, role_id, id], function (err) {
         if (err) return res.status(500).json({ error: "Error al actualizar usuario" });

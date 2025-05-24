@@ -35,7 +35,7 @@ button:hover {
 /* Formulario de login */
 .login-container {
     max-width: 500px;
-    margin: auto;
+    
     background-color: #1e1e1e;
     padding: 10px;
     border-radius: 10px;

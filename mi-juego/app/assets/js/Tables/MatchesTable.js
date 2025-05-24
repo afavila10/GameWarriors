@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('editMatcheName').value = matches.nombre;
         document.getElementById('editMatcheConnected').value = matches.conectados;
         document.getElementById('editMatcheStatus').value = matches.estado;
+        document.getElementById('editMatcheCreateAt').value = matches.creado_en;
 
         const modal = new bootstrap.Modal(document.getElementById('editMatchesModal'));
         modal.show();
@@ -59,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         const id = document.getElementById('editMatchesId').value;
-        console.log('el id que se va  enviar es '+ id);
+        console.log('el id que se va  enviar es ' + id);
 
         const updatedMatches = {
             nombre: document.getElementById('editMatcheName').value,
@@ -67,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             estado: document.getElementById('editMatcheStatus').value,
             creado_en: document.getElementById('editMatcheCreateAt').value,
         };
-        console.log('el datos para actualizar '+ updatedMatches);
+        console.log('el datos para actualizar ' + updatedMatches);
 
         try {
 
@@ -110,24 +111,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     //ver detalles 
-    window.showMatches= async function (id) {
-    try {
-        console.log("Obteniendo detalles del matches con ID:", id);
-        const res = await fetch(`http://localhost:3000/partida/${id}`);
-        if (!res.ok) throw new Error("The matche could not be retrieved.");
-        const matche = await res.json();
-        
-        // Asigna los datos al modal (usa exactamente los mismos nombres)
-        document.getElementById("viewMatchesId").textContent = matche.id;
-        document.getElementById("viewMatchesName").textContent = matche.nombre;
-        document.getElementById("viewMatchesConnected").textContent = matche.conectados;
-        document.getElementById("viewMatchesStatus").textContent = matche.estado;
-        document.getElementById("viewMatchesCreateAt").textContent = matche.creado_en;
+    window.showMatches = async function (id) {
+        try {
+            console.log("Obteniendo detalles del matches con ID:", id);
+            const res = await fetch(`http://localhost:3000/partida/${id}`);
+            if (!res.ok) throw new Error("The matche could not be retrieved.");
+            const matche = await res.json();
 
-        // Muestra el modal
-        document.activeElement.blur(); // evita error de aria-hidden
-        const modal = new bootstrap.Modal(document.getElementById("viewMatchesModal"));
-        modal.show();
+            // Asigna los datos al modal (usa exactamente los mismos nombres)
+            document.getElementById("viewMatchesId").textContent = matche.id;
+            document.getElementById("viewMatchesName").textContent = matche.nombre;
+            document.getElementById("viewMatchesConnected").textContent = matche.conectados;
+            document.getElementById("viewMatchesStatus").textContent = matche.estado;
+            document.getElementById("viewMatchesCreateAt").textContent = matche.creado_en;
+
+            // Muestra el modal
+            document.activeElement.blur(); // evita error de aria-hidden
+            const modal = new bootstrap.Modal(document.getElementById("viewMatchesModal"));
+            modal.show();
         } catch (error) {
             console.error("Error loading Matche details:", error);
             alert("There was a problem loading the Matche details.");
@@ -142,11 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const conectados = document.getElementById("createConnected").value.trim();
         const estado = document.getElementById("createStatus").value.trim();
         const creado_en = document.getElementById("createCreateAt").value.trim();
-        
 
-        
+
+
         // Validación básica
-        if (!nombre|| !conectados|| !estado || !creado_en) {
+        if (!nombre || !conectados || !estado || !creado_en) {
             alert("Por favor, completa todos los campos correctamente.");
             return;
         }
@@ -174,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const modal = bootstrap.Modal.getInstance(document.getElementById("createMatchesModal"));
                 modal.hide();
                 await fetchMatches(); // Recarga la tabla con los perfiles actualizados
-                  // <-- Agregado
+                // <-- Agregado
             } else {
                 alert("Error al crear un Matches: " + result.error);
             }

@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
             //muestra el modal
             const modal = new bootstrap.Modal(document.getElementById("viewUserModal"));
             //modal.removeAttribute("inert");
-            
+
             modal.show();
         } catch (error) {
             console.error("Error loading user details");
@@ -135,8 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = document.getElementById("createName").value.trim();
         const email = document.getElementById("createEmail").value.trim();
         const password = document.getElementById("createPassword").value.trim();
+        const role_id = 1;
         // Validación básica
-        if (!username || !email || !password) {
+        if (!username || !email || !password || !role_id) {
             alert("Por favor, completa todos los campos correctamente.");
             return;
         }
@@ -150,7 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({
                     username,
                     email,
-                    password
+                    password,
+                    role_id
                 })
             });
 

@@ -22,8 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
           <tr>
             <td>${rmp.id}</td>
             <td>${rmp.role_id}</td>
+            <td>${rmp.role_name}</td>
             <td>${rmp.module_id}</td>
+            <td>${rmp.module_name}</td>
             <td>${rmp.permission_id}</td>
+            <td>${rmp.permission_name}</td>
             <td>
               <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(rmp)})'>
                 <i class="fas fa-edit"></i>
@@ -43,6 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Abrir modal y rellenar datos
     window.openEditModal = (rmp) => {
         document.getElementById('editRMPId').value = rmp.id;
+        document.getElementById('editNewRoleId').value = rmp.role_id;
+        document.getElementById('editNewModuleId').value = rmp.module_id;
+        document.getElementById('editNewPermissionId').value = rmp.permission_id;
         const modal = new bootstrap.Modal(document.getElementById('editRMPModal'));
         modal.show();
     };
@@ -101,22 +107,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //ver user RMP
     window.showRMP = async function (id) {
-    try {
-        console.log("Obteniendo detalles del warrior Power con ID:", id);
-        const res = await fetch(`http://localhost:3000/rmp/${id}`);
-        if (!res.ok) throw new Error("The warrior could not be retrieved.");
-        const RMP = await res.json();
-        
-        // Asigna los datos al modal (usa exactamente los mismos nombres)
-        document.getElementById("viewRMPId").textContent = RMP.id;
-        document.getElementById("viewRMPRoleId").textContent = RMP.role_id;
-        document.getElementById("viewRMPModuleId").textContent = RMP.module_id;
-        document.getElementById("viewRMPPermissionId").textContent = RMP.permission_id;
-    
-        // Muestra el modal
-        document.activeElement.blur(); // evita error de aria-hidden
-        const modal = new bootstrap.Modal(document.getElementById("viewRMPModal"));
-        modal.show();
+        try {
+            console.log("Obteniendo detalles del warrior Power con ID:", id);
+            const res = await fetch(`http://localhost:3000/rmp/${id}`);
+            if (!res.ok) throw new Error("The warrior could not be retrieved.");
+            const RMP = await res.json();
+
+            // Asigna los datos al modal (usa exactamente los mismos nombres)
+            document.getElementById("viewRMPId").textContent = RMP.id;
+            document.getElementById("viewRMPRoleId").textContent = RMP.role_id;
+            document.getElementById("viewRMPModuleId").textContent = RMP.module_id;
+            document.getElementById("viewRMPPermissionId").textContent = RMP.permission_id;
+
+            // Muestra el modal
+            document.activeElement.blur(); // evita error de aria-hidden
+            const modal = new bootstrap.Modal(document.getElementById("viewRMPModal"));
+            modal.show();
         } catch (error) {
             console.error("Error loading Role Module Permission details:", error);
             alert("There was a problem loading the Role Module Permission  details.");
@@ -133,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const permission_id = document.getElementById("createPermissionId").value.trim();
 
         // Validación básica
-        if ( !role_id || !module_id || !permission_id) {
+        if (!role_id || !module_id || !permission_id) {
             alert("Por favor, completa todos los campos correctamente.");
             return;
         }

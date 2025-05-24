@@ -77,20 +77,20 @@
                     <div class="modal-body row-4">
                         <input type="hidden" id="editBattlesId">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">warrior id</label>
-                            <input type="number" class="form-control" id="editBattlesWarrior" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">warrior2 id</label>
-                            <input type="number" class="form-control" id="editBattlesWarrior2" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">winner id</label>
-                            <input type="number" class="form-control" id="editBattlesWinner" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
                             <label class="form-label">round</label>
                             <input type="number" class="form-control" id="editBattlesRound" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">warrior id (Ingrese el Id)</label>
+                            <input type="text" class="form-control" id="editBattlesWarrior" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">warrior2 id (Ingrese el Id)</label>
+                            <input type="text" class="form-control" id="editBattlesWarrior2" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">winner id (Ingrese el Id)</label>
+                            <input type="text" class="form-control" id="editBattlesWinner" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -138,7 +138,8 @@
 
 
     <!--Modal para ver detalles-->
-    <div class="modal fade" id="viewBattlesModal" tabindex="-1" aria-labelledby="viewBattlesModalLabel"  aria-hidden="true">
+    <div class="modal fade" id="viewBattlesModal" tabindex="-1" aria-labelledby="viewBattlesModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -148,10 +149,13 @@
                 <div class="modal-body">
                     <p><strong style="color: rgb(106, 188, 24);">ID:</strong> <span id="viewBattleId"></span></p>
                     <p><strong style="color: rgb(106, 188, 24);">round :</strong> <span id="viewBattleRound"></span></p>
-                    <p><strong style="color: rgb(106, 188, 24);">Warrior 1:</strong> <span id="viewBattleWarrior1"></span></p>
-                    <p><strong style="color: rgb(106, 188, 24);">Warrior 2:</strong> <span id="viewBattleWarrior2"></span></p>
-                    <p><strong style="color: rgb(106, 188, 24);">Winner id :</strong> <span id="viewBattleWinner"></span></p>
-                </div>   
+                    <p><strong style="color: rgb(106, 188, 24);">Warrior 1:</strong> <span
+                            id="viewBattleWarrior1"></span></p>
+                    <p><strong style="color: rgb(106, 188, 24);">Warrior 2:</strong> <span
+                            id="viewBattleWarrior2"></span></p>
+                    <p><strong style="color: rgb(106, 188, 24);">Winner id :</strong> <span
+                            id="viewBattleWinner"></span></p>
+                </div>
             </div>
         </div>
     </div>
