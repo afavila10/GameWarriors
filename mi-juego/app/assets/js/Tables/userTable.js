@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${user.username}</td>
             <td>${user.email}</td>
             <td>${user.password}</td>
+            <td>${user.role_id}</td>
+            <td>${user.role_name}</td>
+            <td>${user.created_at}</td>
             <td>
               <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(user)})'>
                 <i class="fas fa-edit"></i>
@@ -48,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('editUserName').value = user.username;
         document.getElementById('editUserEmail').value = user.email;
         document.getElementById('editUserPassword').value = user.password;
+        document.getElementById('editUserRoleId').value = user.role_id;
         const modal = new bootstrap.Modal(document.getElementById('editUserModal'));
         modal.show();
     };
@@ -60,7 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const updatedUser = {
             username: document.getElementById('editUserName').value,
             email: document.getElementById('editUserEmail').value,
-            password: document.getElementById('editUserPassword').value
+            password: document.getElementById('editUserPassword').value,
+            role_id: document.getElementById('editUserRoleId').value
         };
 
         try {
@@ -116,6 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById("viewUserId").textContent = user.user_id;
             document.getElementById("viewUsername").textContent = user.username;
             document.getElementById("viewUserEmail").textContent = user.email;
+            document.getElementById("viewUserRole").textContent = user.role_name;
+
 
             //muestra el modal
             const modal = new bootstrap.Modal(document.getElementById("viewUserModal"));

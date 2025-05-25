@@ -11,15 +11,21 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
         });
-
         const data = await response.json();
 
         if (response.ok) {
-            // Guardar el token en localStorage para futuras peticiones
+            
             localStorage.setItem("token", data.token);
-
-            // Redirigir a la selección de jugadores
-            window.location.href = "partidas.html";
+            localStorage.setItem("role", data.role);
+            localStorage.setItem("username", data.username);
+            // Redirigir según el rol
+            if (data.role === "Administrador") {
+                window.location.href = "../public/views/UserTable.html";
+            } else if (data.role === "Usuario") {
+                window.location.href = "partidas.html";
+            } else {
+                window.location.href = "partidas.html"; // Por si acaso
+            }
         } else {
             // Mostrar mensaje de error
             errorMsg.textContent = data.error || "Credenciales incorrectas";

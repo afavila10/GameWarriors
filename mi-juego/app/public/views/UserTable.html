@@ -22,7 +22,8 @@
 
     <!-- Contenido principal -->
     <div class="content">
-        <div class="dropdown" style="position: absolute; top: 10px; right: 20px;">
+        <div id="perfil"></div>
+        <!--<div class="dropdown" style="position: absolute; top: 10px; right: 20px;">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="profileMenu" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <i class="fas fa-user me-2"></i> Perfil
@@ -34,7 +35,7 @@
                 </li>
                 <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar sesión</a></li>
             </ul>
-        </div>
+        </div>-->
         <h1 class="title">Home</h1>
         <div class="container mt-4">
             <h2 class="mb-4">List of Users</h2>
@@ -50,6 +51,9 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Password</th>
+                            <th>Role Id</th>
+                            <th>Role name</th>
+                            <th>Create at</th>
                             <th>Acciones </th>
                         </tr>
                     </thead>
@@ -84,6 +88,10 @@
                             <label class="form-label">Password</label>
                             <input type="password" class="form-control" id="editUserPassword" required>
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Role id</label>
+                            <input type="number" class="form-control" id="editUserRoleId" required>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Save Changes</button>
@@ -115,6 +123,10 @@
                             <label for="createPassword" class="form-label">Password</label>
                             <input type="password" class="form-control" id="createPassword" required>
                         </div>
+                        <div class="mb-3">
+                            <label for="createRoleId" class="form-label">Role Id</label>
+                            <input type="number" class="form-control" id="createRoleId" required>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Create user</button>
@@ -137,6 +149,7 @@
                     <p><strong style="color: rgb(106, 188, 24);">ID:</strong> <span id="viewUserId"></span></p>
                     <p><strong style="color: rgb(106, 188, 24);">Nombre de usuario:</strong> <span id="viewUsername"></span></p>
                     <p><strong style="color: rgb(106, 188, 24);">Email:</strong> <span id="viewUserEmail"></span></p>
+                    <p><strong style="color: rgb(106, 188, 24);">Rol:</strong> <span id="viewUserRole"></span></p>
                     <!-- Puedes añadir más campos si los tienes -->
                 </div>
             </div>
@@ -147,9 +160,11 @@
 
     <!-- Scripts -->
     <script src="/mi-juego/app/assets/js/loadSidebar.js"></script>
+    <script src="/mi-juego/app/assets/js/loadperfil.js"></script>
     <script src="/mi-juego/app/assets/js/Tables/userTable.js"></script>
     <script src="/mi-juego/app/assets/js/CerrarSesion.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

@@ -57,3 +57,5 @@ socket.on('iniciar_combate', (jugadores) => {
   console.log("⚔️ Jugadores listos:", jugadores);
   estado.textContent = "";
 });
+
+

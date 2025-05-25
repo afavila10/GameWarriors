@@ -23,9 +23,13 @@ exports.create = (username, email, hashedPassword,role_id, callback) => {
     });
 };
 
-// Obtener todos los usuarios
 exports.getAll = (callback) => {
-    const query = "SELECT user_id, username, email, password, role_id FROM USERS";
+    const query = `
+    SELECT u.*, 
+    r.name AS role_name
+    FROM USERS AS u
+    LEFT JOIN roles AS r ON r.id = u.role_id
+    `;
     db.all(query, [], callback);
 };
 
