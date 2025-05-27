@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById("viewUsername").textContent = user.username;
             document.getElementById("viewUserEmail").textContent = user.email;
             document.getElementById("viewUserRole").textContent = user.role_name;
+            document.getElementById("viewUserCreate").textContent = user.created_at;
 
 
             //muestra el modal

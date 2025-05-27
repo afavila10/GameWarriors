@@ -1,0 +1,77 @@
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    color: rgb(230, 215, 215);
+    margin: 10px;
+    padding: 0;
+}
+
+/* Botones */
+button {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 15px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.card {
+    position: flex;
+    background-color: #2a6c60;
+    padding: 20px;
+    border: 5px;
+    margin: 10px;
+    border-radius: 25px;
+    width: 70px;
+    text-align: center;
+}
+
+.card:hover {
+    transform: scale(0.9);
+    opacity: 50;
+    box-shadow: 0 15px 15px #e6e9e786;
+
+}
+
+.card img {
+    width: 180px;
+    height: 220px;
+    padding: 1px 2px 2px;
+    border-radius: 15px;
+}
+
+.card {
+    position: relative;
+    width: 180px;
+    height: 250px;
+    perspective: 200px;
+    /* Profundidad para efecto 3D */
+}
+
+
+.content {
+    margin-left: 220px;
+    padding: 20px;
+    width: 85%;
+}
+
+
+.warrior-img{
+  width: 150px;
+  height: 200px;
+  object-fit: cover; /* Esto recorta la imagen para llenar el espacio */
+  border-radius: 8px; /* Opcional: bordes redondeados */
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* Opcional: sombra */
+}
+
+#lista-guerreros{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}

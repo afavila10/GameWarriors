@@ -32,18 +32,6 @@ button:hover {
     background-color: #0f0e0e;
 }
 
-/* Formulario de login */
-.login-container {
-    max-width: 500px;
-    margin: auto;
-    background-color: #1e1e1e;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(202, 39, 39, 0.2);
-}
-
-
-
 
 /* The Modal (background) */
 .modal {
@@ -52,32 +40,35 @@ button:hover {
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 100;
     /* Sit on top */
-    padding-top: 20%;
+    padding-top: 5px;
     /* Location of the box */
     left: 0;
-    top: 0;
-    width: 100%;
+    margin-top: 10px;
+    width: 100vw;
     /* Full width */
-    height: 60%;
+    height: 100vh;
     /* Full height */
-    overflow: auto;
+    /*overflow: hidden;*/
     /* Enable scroll if needed */
     background-color: rgb(0, 0, 0);
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
     /* Black w/ opacity */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Modal Content */
 .modal-content {
     background-color: #f8f8f8;
     margin: auto;
-    margin-top: 30%;
+    margin-top: 30vh; /*centar el modal*/
     padding: 20px;
     border: 5px solid #888;
-    width: 60%;
+    width: 40%;
 }
 
 /* The Close Button */
@@ -97,7 +88,9 @@ button:hover {
     cursor: pointer;
 }
 
-
+body.modal-open {
+  overflow: hidden;
+}
 
 .input:hover {
     color: #ece6e6;

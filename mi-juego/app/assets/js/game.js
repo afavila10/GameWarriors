@@ -24,23 +24,45 @@ socket.on('sala_llena', () => {
 
 socket.on('seleccionar_guerreros', () => {
   estado.textContent = "Selecciona tus 5 guerreros";
+  listaGuerreros.innerHTML = ""; // Limpia lo anterior si había
 
-  // Por ahora muestra 5 selects vacíos. Luego los llenaremos con datos reales.
-  for (let i = 1; i <= 5; i++) {
-    const select = document.createElement('select');
-    select.name = `guerrero${i}`;
-    select.innerHTML = `
-      <option disabled selected>Seleccionar Guerrero ${i}</option>
-      <option value="1">Guerrero 1</option>
-      <option value="2">Guerrero 2</option>
-      <option value="3">Guerrero 3</option>
-      <option value="4">Guerrero 4</option>
-      <option value="5">Guerrero 5</option>
+  const maxSeleccion = 5;
+  let seleccionados = [];
+
+  for (let i = 1; i <= 10; i++) { // Por si tienes 10 guerreros, puedes cambiarlo
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.guerreroId = i;
+
+    card.innerHTML = `
+      <img class="warrior-img" src="/assets/Img/warriors/${i}.jpg" alt="Guerrero ${i}">
+      <p>Guerrero ${i}</p>
     `;
-    listaGuerreros.appendChild(select);
-    listaGuerreros.appendChild(document.createElement('br'));
+
+    card.addEventListener('click', () => {
+      const id = parseInt(card.dataset.guerreroId);
+
+      if (seleccionados.includes(id)) {
+        // Si ya está seleccionado, lo quitamos
+        seleccionados = seleccionados.filter(g => g !== id);
+        card.classList.remove('seleccionado');
+      } else {
+        if (seleccionados.length < maxSeleccion) {
+          seleccionados.push(id);
+          card.classList.add('seleccionado');
+        } else {
+          alert("Ya seleccionaste 5 guerreros");
+        }
+      }
+
+      console.log("Guerreros seleccionados:", seleccionados);
+    });
+
+    listaGuerreros.appendChild(card);
   }
 });
+
+
 
 // Enviar selección al servidor
 form.addEventListener('submit', (e) => {

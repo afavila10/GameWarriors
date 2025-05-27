@@ -55,6 +55,7 @@ exports.getUserById = (req, res) => {
             u.username,
             u.email,
             u.role_id,
+            u.created_at,
             r.name AS role_name
         FROM USERS u
         LEFT JOIN roles r ON r.id = u.role_id

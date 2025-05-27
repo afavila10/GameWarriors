@@ -18,12 +18,10 @@
             <!-- Trigger/Open The Modal 
             <button id="myBtn">Crear partida</button> -->
             <button class="myBtn" data-modal-target="modalCrear">Crear partida</button>
-            <!-- The Modal -->
-            <div id="modalCrear" class="modal">
-                <!-- Modal content -->
+
+            <div id="modalCrear" class="modal" style="display: none;">
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <!--<p>Some text in the Modal..</p>-->
                     <form id="formCrearPartida">
                         <label for="Pname">Nombre de la partida:</label><br>
                         <input type="text" id="Pname" name="Pname"><br><br>
@@ -32,9 +30,10 @@
                     </form>
                 </div>
             </div>
+
             <button class="myBtn" data-modal-target="modalUnirse">Partidas disponibles</button>
             <!-- Modal Unirse a Partida -->
-            <div id="modalUnirse" class="modal">
+            <div id="modalUnirse" class="modal" style="display: none;">
                 <div class="modal-content">
                     <span class="close" id="closeUnirse">&times;</span>
                     <form>
@@ -48,7 +47,7 @@
             </div>
         </div>
     </div>
-    <!--<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>-->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script src="../assets/js/modal.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
