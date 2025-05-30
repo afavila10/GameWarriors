@@ -23,9 +23,7 @@ socket.on('sala_llena', () => {
 });
 
 socket.on('seleccionar_guerreros', () => {
-  estado.textContent = "Selecciona tus 5 guerreros";
   listaGuerreros.innerHTML = ""; // Limpia lo anterior si había
-
   const maxSeleccion = 5;
   let seleccionados = [];
 

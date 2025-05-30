@@ -31,7 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${warrior.Intenlligence}</td>
             <td>${warrior.Status}</td>
             <td>${warrior.type_id}</td>
+            <td>${warrior.type_name}</td>
             <td>${warrior.race_id}</td>
+            <td>${warrior.race_name}</td>
             <td>
               <button class="btn btn-primary btn-sm me-1" onclick='openEditModal(${JSON.stringify(warrior)})'>
                 <i class="fas fa-edit"></i>
@@ -138,8 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("viewWarriorSpeed").textContent = warrior.Speed;
         document.getElementById("viewWarriorIntenlligence").textContent = warrior.Intenlligence;
         document.getElementById("viewWarriorStatus").textContent = warrior.Status;
-        document.getElementById("viewWarriorType").textContent = warrior.type_id;
-        document.getElementById("viewWarriorRace").textContent = warrior.race_id;
+        document.getElementById("viewWarriorType").textContent = warrior.type_name;
+        document.getElementById("viewWarriorRace").textContent = warrior.race_name;
 
         // Muestra el modal
         document.activeElement.blur(); // evita error de aria-hidden

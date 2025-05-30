@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <td>${battle.warrior1_name}</td>
                 <td>${battle.warrior2_name}</td>
                 <td>${battle.winner_name}</td>
+                <td>
                 <td>${determineWinner(battle)}</td>
             `;
 

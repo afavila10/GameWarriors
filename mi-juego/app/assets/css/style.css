@@ -18,7 +18,7 @@ body {
 
 /* Botones */
 button {
-    background-color: #ff9800;
+    background-color: #487632;
     color: white;
     border: none;
     padding: 15px 10px;
@@ -26,6 +26,7 @@ button {
     cursor: pointer;
     border-radius: 5px;
     margin: 10px;
+    width: auto;
 }
 
 button:hover {
@@ -248,3 +249,6 @@ input {
     background-color: #fffefe;
 }
 
+#navbar{
+    font-size: 20px;
+}

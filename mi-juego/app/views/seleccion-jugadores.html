@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
+    <div id="navbar"></div><br>
     <div class="container">
         <h2 class="text-center my-4">Selecciona 5 Guerreros por Jugador</h2>
 
@@ -24,7 +25,27 @@
 
         <button id="startBattle" class="btn btn-primary mt-4 w-100" disabled>Iniciar Batalla</button>
     </div>
+    <!-- Modal Detalles del Guerrero -->
+    <div class="modal fade" id="warriorModal" tabindex="-1" aria-labelledby="warriorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="warriorModalLabel">Detalles del Guerrero</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+            <div class="modal-body" id="warriorModalBody">
+                <!-- Aquí se cargarán los detalles dinámicamente -->
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/navbar.js"></script>
     <script src="../assets/js/seleccion.js"></script>
+    
 </body>
 </html>

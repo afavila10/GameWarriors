@@ -4,18 +4,27 @@
   <meta charset="UTF-8">
   <title>Juego de Guerreros - Selección</title>
   <script src="/socket.io/socket.io.js"></script>
-  <script defer src="/assets/js/game.js"></script>
+  <script defer src="../assets/js/game.js"></script>
   <link rel="stylesheet" href="../assets/css/styleOnline.css">
 </head>
 <body>
-  <h1>Selecciona tus 5 guerreros</h1>
+  <div id="perfil"></div>
+  <div>
+    <ul>
+      <li><a class="active" href="./partidas.html">Inicio</a></li>
+      <li><a href="./historial.html">Historial</a></li>
+      <li><a href="./login.html">Info</a></li>
+    </ul>
+  </div>
+  <br><br>
+  <h1 style="padding:5px;margin-top:5px;justify-content: center; text-align: center;">Selecciona tus 5 guerreros</h1>
   <div id="estado"></div>
 
   <form id="form-seleccion">
     <div id="lista-guerreros">
       <!-- Aquí se agregarán los select dinámicos -->
     </div>
-    <button type="submit">Confirmar selección</button>
+    <button id="btn"type="submit">Confirmar selección</button>
   </form>
 
   <div id="mensaje-combate"></div>

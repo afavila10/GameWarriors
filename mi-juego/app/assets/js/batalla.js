@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const img = document.createElement("img");
         img.src = `../assets/Img/warriors/${warrior.warrior_id}.jpg`;
-        //img.onerror = () => img.src = "../assets/css/Img/default.jpg";
+        img.onerror = () => img.src = "../assets/Img/warriors/default.jpg";
         img.classList.add("card-img-top");
 
         // Obtener poderes y hechizos desde la API

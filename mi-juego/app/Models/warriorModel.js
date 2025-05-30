@@ -4,8 +4,9 @@ module.exports = {
   // Obtener todos los guerreros
   getAllWarriors(callback) {
     const query = `
-      SELECT w.*, wt.name AS type_name 
+      SELECT w.*, wt.name AS type_name, r.name AS race_name 
       FROM Warrior w
+      INNER JOIN race r ON w.race_id = r.race_id
       LEFT JOIN Warrior_Type wt ON w.type_id = wt.type_id`;
     db.all(query, [], callback);
   },
@@ -13,8 +14,9 @@ module.exports = {
   // Obtener un guerrero por ID
   getWarriorById(id, callback) {
     const query = `
-      SELECT w.*, wt.name AS type_name 
+      SELECT w.*, wt.name AS type_name, r.name AS race_name
       FROM Warrior w
+      INNER JOIN race r ON w.race_id = r.race_id
       LEFT JOIN Warrior_Type wt ON w.type_id = wt.type_id
       WHERE w.warrior_id = ?`;
     db.get(query, [id], callback);
