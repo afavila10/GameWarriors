@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <tr>
             <td>${WarriorSpell.id}</td>
             <td>${WarriorSpell.warrior_id}</td>
+            <td>${WarriorSpell.warriorName}</td>
             <td>${WarriorSpell.spell_id}</td>
             <td>${WarriorSpell.spell_name}</td>
             <td>${WarriorSpell.percentage}</td>

@@ -11,9 +11,10 @@ const db = require('../database/database');
 };*/
 const getAllWarriorSpells = (callback) => {
     const query = `
-        SELECT ws.warriorSpellsId AS id, ws.warrior_id, ws.spell_id, s.name AS spell_name, s.percentage
+        SELECT ws.warriorSpellsId AS id, ws.warrior_id, ws.spell_id, s.name AS spell_name, s.percentage, w.name As warriorName
         FROM WARRIOR_SPELLS ws
         JOIN SPELLS s ON ws.spell_id = s.spell_id
+        JOIN WARRIOR w ON ws.warrior_id = w.warrior_id
     `;
     db.all(query, [], callback);
 };

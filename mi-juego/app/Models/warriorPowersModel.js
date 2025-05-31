@@ -2,9 +2,10 @@ const db = require('../database/database');
 
 exports.getAllWarriorPowers = (callback) => {
     const query = `
-        SELECT wp.warriorPowersId AS id, wp.warrior_id, p.power_id, p.name, p.percentage 
+        SELECT wp.warriorPowersId AS id, wp.warrior_id, p.power_id, p.name, p.percentage, w.name As warriorName
         FROM WARRIOR_POWERS wp
         JOIN POWERS p ON wp.power_id = p.power_id
+        JOIN WARRIOR w ON wp.warrior_id = w.warrior_id
     `;
     db.all(query, [], callback);
 };

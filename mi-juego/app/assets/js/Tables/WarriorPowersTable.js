@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <tr>
             <td>${warriorPower.id}</td>
             <td>${warriorPower.warrior_id}</td>
+            <td>${warriorPower.warriorName}</td>
             <td>${warriorPower.power_id}</td>
             <td>${warriorPower.name}</td>
             <td>${warriorPower.percentage}</td>
