@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (perfilDiv) {
         try {
-            const response = await fetch("/mi-juego/app/public/views/components/perfil.html"); // Ruta relativa a tu proyecto
+            const response = await fetch("/views/components/perfil.html"); // Ruta relativa a tu proyecto
             const html = await response.text();
             perfilDiv.innerHTML = html;
 
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 logoutBtn.addEventListener("click", (e) => {
                     e.preventDefault();
                     localStorage.clear();
-                    window.location.href = "/mi-juego/app/views/login.html";
+                    window.location.href = "/views/login.html";
                 });
             }
         } catch (error) {

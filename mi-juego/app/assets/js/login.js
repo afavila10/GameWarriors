@@ -20,9 +20,9 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             localStorage.setItem("username", data.username);
             // Redirigir según el rol
             if (data.role === "Administrador") {
-                window.location.href = "../public/views/UserTable.html";
+                window.location.href = "/public/views/UserTable.html";
             } else if (data.role === "Usuario") {
-                window.location.href = "partidas.html";
+                window.location.href = "/views/partidas.html";
             } else {
                 window.location.href = "partidas.html"; // Por si acaso
             }
